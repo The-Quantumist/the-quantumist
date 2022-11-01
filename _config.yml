@@ -1,0 +1,55 @@
+## Site metadata ##
+
+title: The Quantumist
+description: A blog about quantum computers, machine learning and more.
+name: "The Quantumist"
+
+author: Federico Tiblias, Gilberto Manunza
+### Built settings ###
+
+url: "https://The-Quantumist.github.io"
+baseurl: "/the-quantumist"
+
+github_username: The-Quantumist
+
+plugins:
+  - jekyll-include-cache
+  - jekyll-remote-theme
+  - jekyll-relative-links
+  - jekyll-archives
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-postfiles
+  - jekyll-scholar
+
+relative_links:
+  enabled: true
+  collections: true
+
+markdown: kramdown
+
+jekyll-archives:
+  enabled: all # []
+  layout: archive
+  permalinks:
+    year: '/:year/'
+    month: '/:year/:month/'
+    day: '/:year/:month/:day/'
+    tag: '/tag/:name/'
+    category: '/category/:name/'
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+
+remote_theme: mmistakes/minimal-mistakes
+minimal_mistakes_skin: "quantum" # "quantum", "air", "aqua", "default", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"

@@ -1,0 +1,11 @@
+Federico Tiblias:
+  name        : "Federico Tiblias"
+  bio         : "A computer engineer interested in machine learning and quantum computing. Currently an intern at Amadeus Nice."
+  avatar      : "/assets/images/authors-icons/federico-tiblias.jpeg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:f.tiblias@live.it"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github-square"
+      url: "https://github.com/akatief"
