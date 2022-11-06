@@ -7,10 +7,10 @@ name: "The Quantumist"
 author: Federico Tiblias, Gilberto Manunza
 ### Built settings ###
 
-url: "https://The-Quantumist.github.io"
-baseurl: "/the-quantumist"
+url: "https://the-quantumist.github.io"
+baseurl: ""
 
-github_username: The-Quantumist
+github_username: the-quantumist
 
 plugins:
   - jekyll-include-cache
