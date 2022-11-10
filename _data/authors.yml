@@ -1,3 +1,15 @@
+Gilberto Manunza:
+  name        : "Gilberto Manunza"
+  bio         : "A Data Scientist interested in ML and quantum computing"
+  avatar      : "/assets/images/authors-icons/gilberto-manunza.png"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:gilbertomanunza@gmail.com"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github-square"
+      url: "https://github.com/gialbo"
+
 Federico Tiblias:
   name        : "Federico Tiblias"
   bio         : "A computer engineer interested in machine learning and quantum computing. Currently an intern at Amadeus Nice."

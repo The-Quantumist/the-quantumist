@@ -4,8 +4,7 @@ date: 2022-11-01
 tags:
   - Quantum Computing
   - Linear Algebra
-author: Gilberto Manunza
-author: Federico Tiblias
+author: Gilberto Manunza, Federico Tiblias
 ---
 
 Here’s the thing about Quantum Computing: it is one of the most
