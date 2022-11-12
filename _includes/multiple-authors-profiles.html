@@ -18,11 +18,6 @@
       <h3 class="author__name p-name" itemprop="name">
         <a class="u-url" rel="me" href="{{ author.home | default: '/' | absolute_url }}" itemprop="url">{{ author.name }}</a>
       </h3>
-      {% if author.bio %}
-        <div class="author__bio p-note" itemprop="description">
-          {{ author.bio | markdownify }}
-        </div>
-      {% endif %}
     </div>
 
     <div class="author__urls-wrapper">
