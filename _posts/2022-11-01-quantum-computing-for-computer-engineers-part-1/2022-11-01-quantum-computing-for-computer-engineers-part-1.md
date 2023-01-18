@@ -23,7 +23,7 @@ Quantum computers are not only theoretical devices, they actually exist
 and have been built by companies in the quest of developing this new and
 completely different technology. Demonstrating that a quantum computer
 can solve a problem more efficiently than a standard computer, however,
-is a no easy task, this is the so called quantum supremacy problem. In a
+is not an easy task, this is the so called quantum supremacy problem. In a
 paper from 2019, Google announced that it had achieved for the first
 time quantum supremacy. Since then, papers were published showing how
 the results claimed by Google were beaten using new techniques to
@@ -140,7 +140,7 @@ computing). In a nutshell, the goal of quantum computing is to find
 clever ways to extract this hidden information in the most efficient way
 possible.
 
-An useful analogy for understanding the qubit is the Schrödinger’s cat
+A useful analogy for understanding the qubit is the Schrödinger’s cat
 (if you don’t know about this thought experiment, more info can be found [here](https://en.wikipedia.org/wiki/Schr%C3%B6dinger%27s_cat)). To
 recap what the experiment is about: let’s imagine to put a cat, a flask
 of poison and a source of radiation in a box. The source of radiation is
@@ -153,7 +153,7 @@ alive or dead. We can say that the cat is in a superposition of these
 states, being both alive and dead at the same time, like a qubit can
 be both $$\ket{0}$$ and $$\ket{1}$$. The point is that, when we eventually
 open the box, the cat can not be in a mixture of the two states, it will
-be alive or dead, exactly how the qubit, when measured, can just be $$0$$ or $$1$$. Why does this state collapse happens? Nobody knows, but this how
+be alive or dead, exactly how the qubit, when measured, can just be $$0$$ or $$1$$. Why does this state collapse happens? Nobody knows, but this is how
 things work, you know.
 
 Back to our math, we said that the values $$|\alpha|^2+|\beta|^2=1$$, so a
@@ -253,7 +253,7 @@ possible to show that for a matrix $$U$$ to be a valid quantum gate it
 should have the property: $$U^{\dagger}U=I$$. $$U^{\dagger}$$ is the *adjoint*
 matrix of $$U$$ (also called *Hermitian transpose*), obtained by taking the transpose of $$U$$ and complex
 conjugating it. This constraint is called Hermiticity, and any matrix
-that satisfy it is a valid quantum gate! This means that there many
+that satisfies it is a valid quantum gate! This means that there many
 non-trivial single bit quantum gates.
 
 For example a very important gate is the Hadamard gate:
@@ -290,7 +290,7 @@ $$
 A natural question to ask is: why the $$-1$$ in the bottom right corner of
 the matrix? This is because an important property of quantum gates
 (derived from the Hermiticity constraint) is that all gates should be
-reversible, i.e. if we let go to the same gate the output qubit we will
+reversible, i.e. if we let the output qubit go through the same gate we will
 end up with the original one. This is actually an important property of
 quantum phisics that emerges in multiple situations.
 
