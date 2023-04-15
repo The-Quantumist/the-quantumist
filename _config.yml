@@ -21,6 +21,15 @@ plugins:
   - jekyll-sitemap
   - jekyll-postfiles
   - jekyll-scholar
+  - jekyll-toc
+
+# TOC Settings
+toc:
+ min_level: 1
+ max_level: 3
+ list_class: toc
+ list_class: toc__list
+ sublist_class: toc__sublist
 
 relative_links:
   enabled: true

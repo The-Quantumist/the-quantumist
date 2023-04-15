@@ -5,6 +5,7 @@ tags:
   - Quantum Computing
   - Linear Algebra
 author: Federico Tiblias, Gilberto Manunza
+toc: true
 ---
 
 # Where are the other 432?
@@ -85,7 +86,7 @@ $$
 
 Why do we care about this? Because it tells us how different qubit probabilities interact with each other to build larger systems. And the way they do is with simple products (for now...). What about $$n$$ qubits? Since $$n$$ classical bits can assume $$2^n$$ different configurations, we expect $$n$$ qubits to have $$2^n$$ different base states. To represent these many states we need a long state vector, $$2^n$$ elements long to be precise. If you're still not convinced, try computing the *Kronecker product* between more than $$2$$ qubits. 
 
-## Multiple qubit gates
+## Multiple-qubit gates
 To manipulate big qubit systems we need big quantum gates. And they are defined in pretty much the same way as before. For an $$n$$ qubit system, we can write them as Hermitian matrices of size $$2^n\times2^n$$. 
 
 The most common quantum gate with more than a qubit is the CNOT gate, or Controlled Not. This gate takes two qubits as input: the first is the control one, the second is the target. The behaviour is quite simple: if the control qubit is set to $$\ket{0}$$ then nothing happens to the other qubit, viceversa if the control qubit is set to $$\ket{1}$$, then the target qubit is flipped. Mathematically:

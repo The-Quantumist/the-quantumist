@@ -5,7 +5,10 @@ tags:
   - Quantum Computing
   - Linear Algebra
 author: Gilberto Manunza, Federico Tiblias
+toc: true
 ---
+
+# Qubits and quantum gates
 
 Here’s the thing about Quantum Computing: it is one of the most
 interesting and promising fields of research, but at the same time one

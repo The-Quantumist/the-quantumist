@@ -18,6 +18,7 @@ group :jekyll_plugins do
   gem 'jekyll-postfiles', '~> 3.1'
   gem 'jekyll-scholar', '~> 6.8.0'
   gem "jekyll-pandoc"
+  gem 'jekyll-toc'
 
 end
 
