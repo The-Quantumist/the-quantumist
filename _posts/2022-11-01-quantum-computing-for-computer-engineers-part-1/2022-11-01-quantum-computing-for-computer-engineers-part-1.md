@@ -17,7 +17,7 @@ counter-intuitive laws of quantum mechanics is quite old, and since the
 80s people are developing a quantum computation theory. One of the first
 reasons why this could be relevant is the inherent difficulty of
 simulating quantum systems on classical computers (as pointed out by
-Feynman himself in $$1982$$). Secondly, a computer built using the rules
+Feynman himself in 1982). Secondly, a computer built using the rules
 of quantum mechanics can, in theory, solve a particular set of problems
 way faster than a standard computer. For example, it could search an
 element in a generic vector in $$O(\sqrt{n})$$!
@@ -74,7 +74,7 @@ $$
 
 where $$\alpha$$ and $$\beta$$ are two complex numbers. For now you can
 think of them as real numbers, you’ll see that not much is lost. In math
-terms, you can see a qubit as a vector in a $$2$$-D space, where the
+terms, you can see a qubit as a vector in a 2-D space, where the
 special states $$\ket{0}$$ and $$\ket{1}$$ are the so called computational
 basis states.
 
@@ -176,21 +176,22 @@ $$
     \ket{\psi}=\cos\frac{\theta}{2}\ket{0}+e^{i\varphi}\sin\frac{\theta}{2}\ket{1}
 $$
 
-We can see the qubit as a point in the 3-$$D$$ unit sphere, also called
+We can see the qubit as a point in the 3-D unit sphere, also called
 Bloch sphere, this visualization is often used in quantum computing,
 even if it can not be generalized to multiple qubit systems.
 
 <div id="fig-bloch">
 
-<div ref-parent="fig-bloch">
+<div style="display: flex;justify-content: center;">
 
 <a href="https://en.wikipedia.org/wiki/Bloch_sphere" width="80%"><img
 src="images/Bloch_sphere.svg.png" /></a>
 
 </div>
 
-Figure 1: A Bloch sphere
-
+<div style="display: flex;justify-content: center;">
+<i>Figure 1: A Bloch sphere</i>
+</div>
 </div>
 
 ## Quantum Gates
@@ -309,8 +310,8 @@ reasons for doing so: one can be personal interest, another can be the
 fact that investing time in learning these concepts can be very
 strategic. Many large companies have invested millions into this field,
 and breakthroughs happen by the day. Whatever your reason, if you want
-to go deeper we published on our blog a part $$2$$ of this article. Here
-we kept the math simple and intuitive, while in part $$2$$ we focus more
+to go deeper we published on our blog a part 2 of this article. Here
+we kept the math simple and intuitive, while in part 2 we focus more
 on the math formalism and introduce some other important concepts. Don’t
 be scared: if you have a general knowledge of computer science and
 linear algebra you’ll be able to follow it!
