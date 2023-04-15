@@ -1,11 +1,14 @@
 ---
-title: "Where are the other 432?"
+title: "Quantum Computing for Computer Engineers - Part 2"
 date: 2023-01-31
 tags:
   - Quantum Computing
   - Linear Algebra
 author: Federico Tiblias, Gilberto Manunza
 ---
+
+# Where are the other 432?
+
 
 The story so far: quantum computers run on strange little things called qubits, we can write them as $$2$$D vectors, and the values inside these vectors represent the probabilities of observing them in state $$\ket{0}$$ or $$\ket{1}$$. 
 
@@ -176,8 +179,6 @@ $$
 **Spoiler**: you can't. 
 An even stranger thing: what happens if you read the first qubit and observe a $$0$$? You must be either in configuration $$\ket{00}$$ or $$\ket{01}$$, but the probability of the first configuration is $$0$$... The opposite happens if you instead observe a $$1$$ on the first qubit.
 By collapsing the wave function of the first qubit we instantly reduced the probability of some state on the other qubit to $$0$$. It means that also the second unmeasured qubit collapsed without us ever touching it! This behavior is a manifestation of an important quantum phenomenon with deep implications and it's known as *entanglement*. While this deserves an article on its own we can say in short that when two qubits are entagled they are strongly correlated: measuring the first implies a measuremnent of the second and viceversa. This correlation is very strong and no matter how far we separate these qubits (remember qubits can be atoms, ions, cats), they will always be entangled. This can lead to very weird stuff, like teleportation. There are fundamental differences between entanglement and correlation, so remember that this analogy is not mathematically accurate. 
-
-We hope you learned something new! Stay tuned if you'd like to know more about measurement, entanglement and all interesting developments of this fascinating field.
 
 *Note:* [Here](https://physics.stackexchange.com/questions/561382/what-exactly-is-the-difference-between-entanglement-and-correlations) you can find more about the difference between correlation and entanglement.
 

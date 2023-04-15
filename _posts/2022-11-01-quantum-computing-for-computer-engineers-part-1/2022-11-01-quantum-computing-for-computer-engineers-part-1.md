@@ -1,5 +1,5 @@
 ---
-title: "Quantum Computing for Computer Engineers"
+title: "Quantum Computing for Computer Engineers - Part 1"
 date: 2022-11-01
 tags:
   - Quantum Computing
@@ -31,8 +31,9 @@ simulate quantum computers on standard supercomputers. Competition is
 fierce and the quest to find quantum algorithms able to outperform
 standard computers is still on.
 
-In this article we are going to introduce the basis of quantum computing
-theory, with some examples and a little bit of math. The article is
+This article is the first of a series of posts in which we are going
+to introduce the basis of quantum computing theory,
+with some examples and a little bit of math. The article is
 meant for people with a general knowledge of linear algebra and computer
 science, but zero knowledge of quantum physics. Oftentimes, introductory
 explanations on quantum computing are either too basic, using
