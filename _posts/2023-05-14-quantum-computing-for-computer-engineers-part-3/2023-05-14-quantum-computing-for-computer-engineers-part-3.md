@@ -309,3 +309,7 @@ A final remark you may have is: "This notation is rather cumbersome, can we use 
 ## Conclusion
 
 Quite a lot of stuff we saw in this episode! Here we introduced one of the most important concepts in quantum physics, and we showed with a fair bit of math how to apply it for quantum computing. The superdense coding example is one of many applications of entanglement in quantum theory. Another weird and fascinating thing we can do with it is teleporting qubits! We are eager to cover more on the topic in following articles.
+
+## Sources
+
+Nielsen, M., & Chuang, I. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press. doi:10.1017/CBO9780511976667

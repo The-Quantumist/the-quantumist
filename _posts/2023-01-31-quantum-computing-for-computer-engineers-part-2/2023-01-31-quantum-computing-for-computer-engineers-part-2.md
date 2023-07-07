@@ -253,3 +253,7 @@ This notion of quantum circuits will become particularly useful in the future wh
 
 ## Conclusion
 That's all for this second article about the basics of quantum computing, in the next ones we will focus deeper on the concepts of measurement and entaglement (that's a lot of cool stuff). If you liked the article or you have any question and/or suggestion, feel free to leave a comment. Until next time!
+
+## Sources
+
+Nielsen, M., & Chuang, I. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press. doi:10.1017/CBO9780511976667
