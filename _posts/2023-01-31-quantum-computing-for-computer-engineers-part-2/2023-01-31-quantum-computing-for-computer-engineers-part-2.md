@@ -236,7 +236,7 @@ src="images/fig-bell-qcircuit-output-1.png" />
 </div>
 </div>
 
-As an exercise, you can do the math yourself and show that this circuit can be used to create entangled states! Simply take any 2-qubit state and apply the matrix representing the circuit to it. As a hint, the matrix is $U_{CN}(H \otimes I)$. Note how this time we apply the Kronecker product to matrices. Finally, we can represent the operation of measurement:
+As an exercise, you can do the math yourself and show that this circuit can be used to create entangled states! Simply take any 2-qubit state and apply the matrix representing the circuit to it. As a hint, the matrix is $$U_{CN}(H \otimes I)$$. Note how this time we apply the Kronecker product to matrices. Finally, we can represent the operation of measurement:
 
 <div>
 <div style="display: flex;justify-content: center;">
@@ -253,3 +253,7 @@ This notion of quantum circuits will become particularly useful in the future wh
 
 ## Conclusion
 That's all for this second article about the basics of quantum computing, in the next ones we will focus deeper on the concepts of measurement and entaglement (that's a lot of cool stuff). If you liked the article or you have any question and/or suggestion, feel free to leave a comment. Until next time!
+
+## Sources
+
+Nielsen, M., & Chuang, I. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press. doi:10.1017/CBO9780511976667

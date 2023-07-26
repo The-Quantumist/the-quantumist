@@ -299,7 +299,7 @@ reversible, i.e. if we let the output qubit go through the same gate we will
 end up with the original one. This is actually an important property of
 quantum phisics that emerges in multiple situations.
 
-## Conclusions
+## Conclusion
 
 In this introductory article we gave you a taste of quantum computing
 and we introduced some fundamental concepts and notation. Probably
@@ -315,3 +315,7 @@ we kept the math simple and intuitive, while in part 2 we focus more
 on the math formalism and introduce some other important concepts. Don’t
 be scared: if you have a general knowledge of computer science and
 linear algebra you’ll be able to follow it!
+
+## Sources
+
+Nielsen, M., & Chuang, I. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press. doi:10.1017/CBO9780511976667
