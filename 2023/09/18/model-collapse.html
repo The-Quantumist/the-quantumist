@@ -1,0 +1,714 @@
+<!-- Mathjax Support -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      packages: ['base', 'ams', 'braket', 'color']
+    },
+    loader: {
+      load: ['ui/menu', '[tex]/ams', '[tex]/braket', '[tex]/color']
+    }
+  };
+  </script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>The snake biting its own tail: a brief overview of LLM collapse - The Quantumist</title>
+<meta name="description" content="Scientists in the 1940s encountered a particular problem: newly-produced equipment for detecting radiation was recording a faint but constant signal, making it impossible to detect radiation below a certain threshold, limiting its sensitivity. Nothing had changed about their manufacturing process, so what was the culprit? The cause - it was later discovered - were early nuclear weapon tests. During these events, large quantities of radioactive material were released into the atmosphere. These radioactive particles quickly spread and dispersed slightly raising atmospheric background radiation. Steel production requires large amounts of oxygen. After the nuclear tests in 1945, it was no longer possible to extract it from the atmosphere without also capturing some radioactive particles. These detectors were not reading some unknown external signature, they were reading radioactivity from their own metal parts. A sudden event had changed something about the fundamental materials these devices were made out of, rendering them less accurate. Manufacturers started to seek out steels produced before the critical date of the first nuclear test, a material now known as low-background steel. Something similar is happening, right under our noses, with Large Language Models.">
+
+
+  <meta name="author" content="Federico Tiblias">
+  
+  <meta property="article:author" content="Federico Tiblias">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Quantumist">
+<meta property="og:title" content="The snake biting its own tail: a brief overview of LLM collapse">
+<meta property="og:url" content="https://the-quantumist.github.io/2023/09/18/model-collapse.html">
+
+
+  <meta property="og:description" content="Scientists in the 1940s encountered a particular problem: newly-produced equipment for detecting radiation was recording a faint but constant signal, making it impossible to detect radiation below a certain threshold, limiting its sensitivity. Nothing had changed about their manufacturing process, so what was the culprit? The cause - it was later discovered - were early nuclear weapon tests. During these events, large quantities of radioactive material were released into the atmosphere. These radioactive particles quickly spread and dispersed slightly raising atmospheric background radiation. Steel production requires large amounts of oxygen. After the nuclear tests in 1945, it was no longer possible to extract it from the atmosphere without also capturing some radioactive particles. These detectors were not reading some unknown external signature, they were reading radioactivity from their own metal parts. A sudden event had changed something about the fundamental materials these devices were made out of, rendering them less accurate. Manufacturers started to seek out steels produced before the critical date of the first nuclear test, a material now known as low-background steel. Something similar is happening, right under our noses, with Large Language Models.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-09-18T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://the-quantumist.github.io/2023/09/18/model-collapse.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "The Quantumist",
+      "url": "https://the-quantumist.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Quantumist Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single_multiple_authors">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          The Quantumist
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/tags">Posts by tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/posts">Posts by date</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+    <h3>Authors</h3>
+    
+
+
+
+
+  
+  <div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+    
+      <div class="author__avatar">
+        <a href="https://the-quantumist.github.io/">
+          <img src="/assets/images/authors-icons/federico-tiblias.jpeg" alt="Federico Tiblias" itemprop="image" class="u-photo">
+        </a>
+      </div>
+    
+
+    <div class="author__content">
+      <h3 class="author__name p-name" itemprop="name">
+        <a class="u-url" rel="me" href="https://the-quantumist.github.io/" itemprop="url">Federico Tiblias</a>
+      </h3>
+    </div>
+
+    <div class="author__urls-wrapper">
+      <button class="btn btn--inverse">Follow</button>
+      <ul class="author__urls social-icons">
+        
+
+        
+          
+            
+              <li><a href="mailto:f.tiblias@live.it" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+            
+          
+            
+              <li><a href="https://github.com/akatief" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github-square" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+            
+          
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- 
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li> -->
+
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="The snake biting its own tail: a brief overview of LLM collapse">
+    <meta itemprop="description" content="Scientists in the 1940s encountered a particular problem: newly-produced equipment for detecting radiation was recording a faint but constant signal, making it impossible to detect radiation below a certain threshold, limiting its sensitivity. Nothing had changed about their manufacturing process, so what was the culprit? The cause - it was later discovered - were early nuclear weapon tests. During these events, large quantities of radioactive material were released into the atmosphere. These radioactive particles quickly spread and dispersed slightly raising atmospheric background radiation. Steel production requires large amounts of oxygen. After the nuclear tests in 1945, it was no longer possible to extract it from the atmosphere without also capturing some radioactive particles. These detectors were not reading some unknown external signature, they were reading radioactivity from their own metal parts. A sudden event had changed something about the fundamental materials these devices were made out of, rendering them less accurate. Manufacturers started to seek out steels produced before the critical date of the first nuclear test, a material now known as low-background steel. Something similar is happening, right under our noses, with Large Language Models.">
+    <meta itemprop="datePublished" content="2023-09-18T00:00:00+00:00">
+    
+
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#machine-learning">MACHINE LEARNING</a>,
+        
+        <a class="tag"
+          href="/tags#large-language-models">LARGE LANGUAGE MODELS</a>
+        
+      </span>
+    </div>
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://the-quantumist.github.io/2023/09/18/model-collapse.html" class="u-url" itemprop="url">The snake biting its own tail: a brief overview of LLM collapse
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#model-collapse">Model collapse</a></li><li><a href="#implications">Implications</a></li><li><a href="#a-silver-lining">A silver lining</a></li><li><a href="#conclusion">Conclusion</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Scientists in the 1940s encountered a particular problem: newly-produced equipment for detecting radiation was recording a <strong>faint but constant signal</strong>, making it impossible to detect radiation below a certain threshold, limiting its sensitivity. Nothing had changed about their manufacturing process, so what was the culprit? The cause - it was later discovered - were <strong>early nuclear weapon tests</strong>. During these events, large quantities of radioactive material were released into the atmosphere. These radioactive particles quickly spread and dispersed slightly raising atmospheric background radiation. Steel production requires large amounts of oxygen. After the nuclear tests in 1945, it was no longer possible to extract it from the atmosphere without also capturing some radioactive particles. These detectors were not reading some unknown external signature, they were reading <strong>radioactivity from their own metal parts</strong>. A sudden event had changed <strong>something</strong> about the fundamental materials these devices were made out of, rendering them less accurate. Manufacturers started to seek out steels produced before the critical date of the first nuclear test, a material now known as <a href="https://qz.com/emails/quartz-obsession/1849564217/low-background-metal-pure-unadulterated-treasure">low-background steel</a>. Something similar is happening, right under our noses, with Large Language Models.</p>
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/warship.jpg" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 1: WW1 warships were often used as a source of low background steel.</i>
+</div>
+</div>
+
+<p><strong>Large Language Models (LLMs)</strong> have quickly spread and become ubiquitous in our day-to-day lives. These complex machines are built by <strong>pre-training</strong> on large swathes of the web, and then by <strong>fine-tuning</strong> on a specific task (for example summarizing the main points of a piece of text). Conversational agents like ChatGPT are further tuned using a technique called <strong>Reinforcement Learning from Human Feedback</strong>, which precisely aligns the output of these assistants with how we expect them to behave. This intricate process has made them valuable tools for many jobs ranging from coding to creative writing.</p>
+
+<p>This pervasiveness might paradoxically become dangerous for LLMs, hindering their birth and development. LLMs are creating an environment that is <strong>toxic</strong> for their own survival, and every piece of generated text that gets uploaded further <strong>intensifies the problem</strong>. How come?</p>
+
+<h2 id="model-collapse">Model collapse</h2>
+<p>Imagine printing a picture, then scanning it, then printing the result, then scanning it… What would the resulting image would look like after repeating this process dozens of times? What if instead of a printer and a photograph you had a LLM and some text?</p>
+
+<p>A group of researchers at Oxford, Cambridge, ICL and University of Toronto asked themselves a very simple question: “What would happen if a generative model <strong>learned</strong> from the same data it <strong>generated</strong>?”. To answer, they first trained a LLM on some data and then used it to generate additional training samples. Then, they trained a new model from scratch on this generated data, and used it to produce the next iteration of training data, repeating the process over and over. At first, nothing bad happened, with only a slight decrease in performance. But then, after enough generations, the model started producing incoherent results and meaningless sentences. With every iteration, the model forgot less common sentences in favor of more frequent ones, flattening the variety of generated samples and further hindering the training of next iterations. This phenomenon was named <a href="https://arxiv.org/abs/2305.17493"><strong>model collapse</strong></a>.</p>
+
+<p>What’s even scarier is that model collapse was observed in other radically <strong>different models</strong> as well. First they experimented on a simple gaussian mixture trying to predict a one-dimensional distribution, then they turned to a Variational Auto Encoder (VAE) for digit generation (the famous MNIST dataset). Across all models, the same patterns emerged: subsequent generations captured <strong>less and less information</strong> from the initial data, resulting in useless models.</p>
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/vae-all.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 2: Model collapse on VAE for MNIST.</i>
+</div>
+</div>
+
+<p>The <strong>cure to collapse</strong>, researchers say, is to keep feeding the models a large proportion of <strong>high-quality data</strong> such as textbooks and articles. This could prevent or at least slow down model collapse until a solution is found. The problem is, we might be soon <strong>running out</strong> of such high-quality data, some estimate as soon as <strong>2026</strong>.</p>
+
+<p>You may think of model collapse as a far-fetched issue that may or may not become significant in decades. Model-generated data is not that pervasive and should not contaminate the natural one for at least a few years, right? Unfortunately, it seems that this process is <strong>already taking place</strong>. Amazon Mechanical Turk (AMK) is a crowdsourcing website often used to build NLP datasets. Users can help labeling data and in exchange they receive a small compensation. A group of researchers at EPFL discovered that between <strong>33% and 46%</strong> of annotator workers used LLMs when completing the task. The choice of task - text summarization - was particularly suited to be automated using LLMs. Crowd workers started prompting ChatGPT in an attempt to complete the task faster, thus earning more. Much like in the low background steel case, it’s becoming increasingly difficult to obtain genuine human-made data. A very recent study also found that traffic to Stack Overflow has been steadily going down since the release of ChatGPT, reaching <strong>-13.9%</strong> in <a href="https://www.similarweb.com/blog/insights/ai-news/stack-overflow-chatgpt/">March 2023</a>. Another variation on this same phenomena affects image generation models: platforms like Instagram or Artstation are being flooded with machine generated content, often without a way to tell it apart from natural data.</p>
+
+<h2 id="implications">Implications</h2>
+
+<p>Models collapse. So what? An immediate consequence we would observe is a decrease in model performance and an increase in hallucinations. Collapsed models tend to generate from a much narrower distribution than its “healthy” counterparts, exhibiting much less variation and nuanced outputs, much like a book whose pages have been torn out. And this process would <strong>accelerate</strong> the more narrow data generated by the model is added to the pool of the next one.</p>
+
+<p>Human language is very complicated. The full range of human written production is made out of poetry, jokes, prose, and infinitely many other unique pieces of expression. A model that learns to write from its own output, losing one page of its book after the other, would soon forget all the richness and variety that made human language complicated in the first place. The first text to be forgotten would be the most rare, creative and precious. Less frequent sentences and styles will disappear in favor of a standard, flatter prose that yields better performance during training. Creativity will be considered an <strong>outlier to correct</strong>. <a href="https://www.newyorker.com/tech/annals-of-technology/chatgpt-is-a-blurry-jpeg-of-the-web">Citing Ted Chiang</a>: “<em>the more that text generated by large language models gets published on the Web, the more the Web becomes a blurrier version of itself</em>”.</p>
+
+<p>Let’s go further, maybe a bit too much. What happens when this blurry picture is fed back to the human in the loop? What happens when we start using these machines as <strong>teaching tools</strong> when learning a new language? Human beings are somewhat similar to LLMs in the sense that they read, learn and produce new ideas based on their experiences. We might become an <strong>active part</strong> of this spiral, generating unoriginal content ourselves and feeding it to the machine teaching us, flying faster and faster towards model collapse, like a <strong>snake biting its own tail</strong>.</p>
+
+<h2 id="a-silver-lining">A silver lining</h2>
+
+<p>This articles depicts a rather bleak future. Luckily, model collapse might not be so certain nor dangerous. A separate group from Microsoft Research recently trained a LLM on generated data from GPT-4, reaching comparable and in some cases <strong>superior</strong> performance to ChatGPT. While it’s true that the performance of the new model didn’t match the original, larger one, it’s also true that it was able to retain most of its capabilities to a significant degree. This may suggest that model collapse is further away than we think. Another reason for reassurance is the fact that the strongest effects of model collapse were observed only in the extreme case where <strong>all</strong> of the training data of consecutive models was <strong>generated</strong> by the previous one and no “fresh” data was added to the dataset. This is not the case in reality, where machine generated data make up only a small portion of all content available on the web. We might also circumvent the issue of stale data altogether by creating methods to detect machine-generated data.</p>
+
+<p>A more speculative reason why model collapse might not be so catastrophic is the fact that human language is extremely <strong>complicated</strong>. So much, in fact, that the possibility of models forgetting useful parts of language to a detectable degree is remote. Moreover, language evolves creating new unique combinations the model has never seen before. Lastly, despite the fact that humans will most certainly use LLMs for learning, that remains a small fraction of the total amount of information a person absorbs during its life. Novelty and creativity will always be driven by <strong>unique experiences</strong>, not just by a machine typing words.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>The objective of this article is to serve as a cautionary tale, raising awareness about a possible problem we will encounter in the future, and possibly encouraging you to read more about it and maybe find a solution! LLMs are becoming more and more pervasive in our lives, and little is known about the consequences they will have on society. Maybe they will shape human production in a duller and boring way, or maybe they’ll evolve alongside the ever changing languages of the world. The deciding factor lies in how well we’ll desing their learning process. Outliers are not friends of this optimization algorithm. Yet, they are exactly what makes human production interesting. Not every anomaly is a mistake, and this, LLMs have not yet learned.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-09-18T00:00:00+00:00">September 18, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=The+snake+biting+its+own+tail%3A+a+brief+overview+of+LLM+collapse%20https%3A%2F%2Fthe-quantumist.github.io%2F2023%2F09%2F18%2Fmodel-collapse.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthe-quantumist.github.io%2F2023%2F09%2F18%2Fmodel-collapse.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fthe-quantumist.github.io%2F2023%2F09%2F18%2Fmodel-collapse.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/2023/07/19/the-quantum-game.html" class="pagination--pager" title="The Quantum Game
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <!-- giscus Support -->
+    <script src="https://giscus.app/client.js"
+    data-repo="the-quantumist/the-quantumist.github.io"
+    data-repo-id="R_kgDOIUt2DA"
+    data-category="Comments"
+    data-category-id="DIC_kwDOIUt2DM4CSiDm"
+    data-mapping="url"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light_high_contrast"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+    </script>
+  </article>
+
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You May Also Enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2023/07/19/the-quantum-game.html" rel="permalink">The Quantum Game
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">Jul 19, 2023</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          16 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">A handbook for understanding quantum math in articles
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2023/05/14/quantum-computing-for-computer-engineers-part-3.html" rel="permalink">Quantum Computing for Computer Engineers - Part 3
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">May 14, 2023</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">So far, yet so close
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2023/01/31/quantum-computing-for-computer-engineers-part-2.html" rel="permalink">Quantum Computing for Computer Engineers - Part 2
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">Jan 31, 2023</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Where are the other 432?
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/11/01/quantum-computing-for-computer-engineers-part-1.html" rel="permalink">Quantum Computing for Computer Engineers - Part 1
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">Nov 01, 2022</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Qubits and quantum gates
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 The Quantumist. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,1250 @@
+<!-- Mathjax Support -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      packages: ['base', 'ams', 'braket', 'color']
+    },
+    loader: {
+      load: ['ui/menu', '[tex]/ams', '[tex]/braket', '[tex]/color']
+    }
+  };
+  </script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>The Quantum Game - The Quantumist</title>
+<meta name="description" content="A handbook for understanding quantum math in articles">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Quantumist">
+<meta property="og:title" content="The Quantum Game">
+<meta property="og:url" content="https://the-quantumist.github.io/2023/07/19/the-quantum-game.html">
+
+
+  <meta property="og:description" content="A handbook for understanding quantum math in articles">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-07-19T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://the-quantumist.github.io/2023/07/19/the-quantum-game.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "The Quantumist",
+      "url": "https://the-quantumist.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Quantumist Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single_multiple_authors">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          The Quantumist
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/tags">Posts by tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/posts">Posts by date</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+    <h3>Authors</h3>
+    
+
+
+
+
+  
+  <div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+    
+      <div class="author__avatar">
+        <a href="https://the-quantumist.github.io/">
+          <img src="/assets/images/authors-icons/federico-tiblias.jpeg" alt="Federico Tiblias" itemprop="image" class="u-photo">
+        </a>
+      </div>
+    
+
+    <div class="author__content">
+      <h3 class="author__name p-name" itemprop="name">
+        <a class="u-url" rel="me" href="https://the-quantumist.github.io/" itemprop="url">Federico Tiblias</a>
+      </h3>
+    </div>
+
+    <div class="author__urls-wrapper">
+      <button class="btn btn--inverse">Follow</button>
+      <ul class="author__urls social-icons">
+        
+
+        
+          
+            
+              <li><a href="mailto:f.tiblias@live.it" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+            
+          
+            
+              <li><a href="https://github.com/akatief" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github-square" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+            
+          
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- 
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li> -->
+
+      </ul>
+    </div>
+  </div>
+
+
+  
+  <div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+    
+      <div class="author__avatar">
+        <a href="https://the-quantumist.github.io/">
+          <img src="/assets/images/authors-icons/gilberto-manunza.png" alt="Gilberto Manunza" itemprop="image" class="u-photo">
+        </a>
+      </div>
+    
+
+    <div class="author__content">
+      <h3 class="author__name p-name" itemprop="name">
+        <a class="u-url" rel="me" href="https://the-quantumist.github.io/" itemprop="url">Gilberto Manunza</a>
+      </h3>
+    </div>
+
+    <div class="author__urls-wrapper">
+      <button class="btn btn--inverse">Follow</button>
+      <ul class="author__urls social-icons">
+        
+
+        
+          
+            
+              <li><a href="mailto:gilbertomanunza@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+            
+          
+            
+              <li><a href="https://github.com/gialbo" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github-square" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+            
+          
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- 
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li> -->
+
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="The Quantum Game">
+    <meta itemprop="description" content="A handbook for understanding quantum math in articles">
+    <meta itemprop="datePublished" content="2023-07-19T00:00:00+00:00">
+    
+
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://the-quantumist.github.io/2023/07/19/the-quantum-game.html" class="u-url" itemprop="url">The Quantum Game
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          16 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#a-handbook-for-understanding-quantum-math-in-articles">A handbook for understanding quantum math in articles</a><ul><li><a href="#matrix-multiplication-refresher">Matrix multiplication refresher</a></li><li><a href="#matrix-notation">Matrix notation</a><ul><li><a href="#a-recap-of-quantum-gates">A recap of quantum gates</a></li><li><a href="#applying-quantum-gates-in-matrix-form">Applying quantum gates in matrix form</a></li></ul></li><li><a href="#dirac-notation">Dirac notation</a><ul><li><a href="#quantum-states-in-dirac-notation">Quantum states in Dirac notation</a></li><li><a href="#quantum-gates-in-dirac-notation">Quantum gates in Dirac notation</a><ul><li><a href="#rule-of-behaviours">Rule of behaviours</a></li><li><a href="#rule-of-parallel-gates">Rule of parallel gates</a></li><li><a href="#rule-of-matching-sizes">Rule of matching sizes</a></li><li><a href="#example-1---single-qubit-gates-in-dirac-notation">Example 1 - Single-qubit gates in Dirac notation</a></li><li><a href="#example-2---multiple-qubit-gates-in-dirac-notation">Example 2 - Multiple-qubit gates in Dirac notation</a></li></ul></li><li><a href="#reading-quantum-circuits">Reading quantum circuits</a></li></ul></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#quantum-gate-summary-table">Quantum gate summary table</a></li><li><a href="#sources">Sources</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="a-handbook-for-understanding-quantum-math-in-articles">A handbook for understanding quantum math in articles</h1>
+
+<p>We all agree that quantum mechanics is weird and fascinating: it can teleport information, connect particles across space and time, and even speed up computations that would take centuries. Our mission at The Quantumist is to make this field a bit more accessible by walking you through the steps and reasonings in a colloquial manner. However, one cannot fully grasp what is going on under the hood without understanding some of the math. We believe math can be seen as a game, and the “rules” of this game determine the symbols you can write and how you can manupulate them. The purpose of this article is to serve as a cheat-sheet for the basic rules that apply when dealing with the math of quantum computing, and is intended for people that want to get their hands dirty. We will expand it in the future with additional notions and tricks we deem useful.</p>
+
+<h2 id="matrix-multiplication-refresher">Matrix multiplication refresher</h2>
+
+<p>This section is intended as a light refresh on one basic linear algebra concept that is fundamental for understanding the rest of the article. Feel free to skip it if you feel you already know these notions.</p>
+
+<p>Matrix multiplication is a basic operation useful to understand how quantum states evolve and how quantum gates combine with each other. To perform a matrix multiplication we of course need two matrices to multiply, \(A\) and \(B\), and we call the resulting matrix \(C\). We define \(A\) to be of generic size \((m \times n)\) (\(m\) rows, \(n\) columns), while \(B\) is of generic size \((k \times l)\). \(A\) and \(B\) can contain any kind of numbers, in our example we choose real numbers for simplicity (\(\mathbb{R}\)) but quantum computing utilizes complex values (\(\mathbb{C}\)). For now, not much is lost in limiting ourselves to real numbers. Back to our matrices, the size we choose for them is important, as we can only perform a matrix product \(A \cdot B\) if the inner dimensions of the product match. In other words, we can only multiply matrices of size \((m \times{\color{red}n})\) and \(({\color{red}k} \times l)\) if \(\color{red}{n = k}\).</p>
+
+<p>Now, let’s see how we can actually compute the matrix product. The generic element \(c_{ij}\) of \(C\) in row \(i\) and column \(j\) is computed as the scalar product of the \(i\)-th row of \(A\) with the \(j\)-th column of \(B\). This is also a mnemonic trick: “To compute the element in the \(\color{red}\text{third row}\), \(\color{blue}\text{second column}\) of \(C\), you must use the \(\color{red}\text{third row}\) of \(A\) and the \(\color{blue}\text{second column}\) of \(B\)”.</p>
+
+\[A \cdot B =
+\begin{bmatrix}
+    a_{11} &amp; \ldots &amp; a_{1n} \\
+    \vdots &amp; \ddots &amp; \vdots \\
+	a_{m1} &amp; \ldots &amp; a_{mn} \\
+\end{bmatrix} \cdot
+\begin{bmatrix}
+    b_{11} &amp; \ldots &amp; b_{1l} \\
+    \vdots &amp; \ddots &amp; \vdots \\
+	b_{k1} &amp; \ldots &amp; b_{kl} \\
+\end{bmatrix} =
+\begin{bmatrix}
+    c_{11} &amp; \ldots &amp; c_{1l} \\
+    \vdots &amp; \ddots &amp; \vdots \\
+	c_{m1} &amp; \ldots &amp; c_{ml} \\
+\end{bmatrix} = C\]
+
+\[c_{ij} \mathrel{\vcenter{:}}= \sum_{x=0}^{n} a_{ix} \cdot b_{jx}\]
+
+<p>As an example, let’s take a look at the following, with \(m = n = k = 3\) and \(l = 2\), in particular let’s show how to obtain element \(\color[rgb]{0.7,0,0.7}c_{32}\):</p>
+
+\[A \cdot B =
+\begin{bmatrix}
+    1 &amp; 3 &amp; 1 \\
+    4 &amp; 3 &amp; 1 \\
+	\color{red}2 &amp; \color{red}1 &amp; \color{red}2 \\
+\end{bmatrix} \cdot
+\begin{bmatrix}
+    1 &amp; \color{blue}0 \\
+    4 &amp; \color{blue}1 \\
+	3 &amp; \color{blue}3 \\
+\end{bmatrix} =
+\begin{bmatrix}
+    16 &amp; 6 \\
+    19 &amp; 6 \\
+	12 &amp; \color[rgb]{0.7,0,0.7}7 \\
+\end{bmatrix} = C\]
+
+\[c_{32} = {\color{red}2} \cdot {\color{blue}0} + {\color{red}1} \cdot {\color{blue}1} + {\color{red}2} \cdot {\color{blue}3} = {\color[rgb]{0.7,0,0.7}7}\]
+
+<p>Note that \(n = k\) was important in order to have vectors of the same length in the computation for \(c_{ij}\).</p>
+
+<h2 id="matrix-notation">Matrix notation</h2>
+
+<h3 id="a-recap-of-quantum-gates">A recap of quantum gates</h3>
+<p>Just as classical computers have logical gates to manipulate information, quantum computers have quantum gates. They serve the purpose of manipulating quantum states - effectively changing the shape of the probability distribution - in order to express some logical function. All quantum gates - and all quantum operators at large - act in a linear fashion. This means we can represent them in a matrix form. Moreover, every generic gate \(U\) is <em>unitary</em>, meaning it preserves the total probability sum of the state to \(1\) (\(U^{\dagger}U = UU^{\dagger} = I\)). All quantum gates are also <em>reversible</em>, meaning that the input can be unambiguously reconstructed from its output. By contrast, a classical XOR gate is irreversible since its output \(0\) can be obtained by both \(11\) and \(00\). Here is a table summarizing the main single and multi-qubit quantum gates:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gate</th>
+      <th>Symbol</th>
+      <th>Matrix form</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Identity</td>
+      <td>\(I\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1\end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>Pauli-X</td>
+      <td>\(X\)</td>
+      <td>\(\begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0\end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>Pauli-Y</td>
+      <td>\(Y\)</td>
+      <td>\(\begin{bmatrix} 0 &amp; -i \\ i &amp; 0\end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>Pauli-Z</td>
+      <td>\(Z\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1\end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>Hadamard</td>
+      <td>\(H\)</td>
+      <td>\(\frac{1}{\sqrt{2}}\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1\end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>\(\varphi\) Phase Shift</td>
+      <td>\(P(\varphi)\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{i\varphi}\end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>CNOT</td>
+      <td>\(\text{CNOT}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>SWAP</td>
+      <td>\(\text{SWAP}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>Controlled-Z</td>
+      <td>\(CZ\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; -1 \end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>Toffoli</td>
+      <td>\(CCX\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \end{bmatrix}\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="applying-quantum-gates-in-matrix-form">Applying quantum gates in matrix form</h3>
+<p>The result of applying a quantum gate to a state can be calculated simply as a matrix multiplication of the gate with the state. The effect of a gate can be easily understood once one visualizes the problem using linear algebra. To this regard, we recommend an excellent and intuitive explanation of these concepts: 3Blue1Brown’s <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of linear algebra</a>.</p>
+
+<p>An intuition coming from linear algebra is that gates in matrix formulation are a map to where the base states end up. Let’s take a look at the following example with a Pauli-Y gate on the \(\ket{0} = [1, 0]^T\) state:</p>
+
+\[Y\ket{0} =
+\begin{bmatrix} 
+	\color{red}0 &amp; -i \\ 
+	\color{red}i &amp; 0
+\end{bmatrix}
+\begin{bmatrix} 
+	1 \\ 
+	0
+\end{bmatrix} =
+\begin{bmatrix} 
+	\color{red}0 \\ 
+	\color{red}i
+\end{bmatrix}\]
+
+<p>Observe how the final output corresponds to the \(\color{red}\text{first column of } Y\). This is trivial, since state \(\ket{0}\) had a single \(1\) in the first position. This, however, is a very useful detail to notice, as it’s valid for gates and states of any size. Moreover, if your state is not a pure state (e.g. not \(\ket{0}\) or \(\ket{1}\)), you can still compute the output as a sum of base states. The values of the state tells you “how much” of every column to use for composing your state. For example, if we apply the Pauly-Y gate to the superposed state \(\ket{+} = \frac{1}{\sqrt{2}}[1, 1]^T\), we obtain:</p>
+
+\[Y\ket{+} =
+\begin{bmatrix} 
+	\color{red}0 &amp; \color{blue}-i \\ 
+	\color{red}i &amp; \color{blue}0
+\end{bmatrix}
+\begin{bmatrix} 
+	1 \\ 
+	1
+\end{bmatrix}\frac{1}{\sqrt{2}} =
+\frac{1}{\sqrt{2}}
+\begin{bmatrix} 
+	\color{red}0 \\ 
+	\color{red}i
+\end{bmatrix} +
+\frac{1}{\sqrt{2}}
+\begin{bmatrix} 
+	\color{blue}-i \\ 
+	\color{blue}0
+\end{bmatrix} =
+\frac{1}{\sqrt{2}}
+\begin{bmatrix} 
+	\color[rgb]{0.7,0,0.7}-i \\ 
+	\color[rgb]{0.7,0,0.7}i
+\end{bmatrix}\]
+
+<p>Let’s make a final example with a CNOT gate applied to a larger, 2-qubit state:</p>
+
+\[\text{CNOT}(\ket{00} + \ket{11}) = 
+\begin{bmatrix} 
+	1 &amp; 0 &amp; 0 &amp; 0 \\ 
+	0 &amp; 1 &amp; 0 &amp; 0 \\ 
+	0 &amp; 0 &amp; 0 &amp; 1 \\ 
+	0 &amp; 0 &amp; 1 &amp; 0 
+\end{bmatrix} 
+\begin{pmatrix} 
+	\begin{bmatrix} 
+	1 \\ 
+	0 \\ 
+	0 \\ 
+	0 
+	\end{bmatrix} + 
+		\begin{bmatrix} 
+	0 \\ 
+	0 \\ 
+	0 \\ 
+	1 
+	\end{bmatrix}
+\end{pmatrix} =
+\begin{bmatrix} 
+	1 \\ 
+	0 \\ 
+	0 \\ 
+	0 
+\end{bmatrix} + 
+\begin{bmatrix} 
+	0 \\ 
+	0 \\ 
+	1 \\ 
+	0 
+\end{bmatrix} =
+\ket{00} + \ket{10}\]
+
+<h2 id="dirac-notation">Dirac notation</h2>
+
+<h3 id="quantum-states-in-dirac-notation">Quantum states in Dirac notation</h3>
+
+<p>Doing the math in matrix notation can get out of hand very quickly. Let’s take the case of a qubit system made of three \(\ket{0}\) states. We represent this in matrix notation as a tensor product of three 2-dimensional vectors:</p>
+
+\[\ket{0} \otimes \ket{0} \otimes \ket{0} = 
+    \begin{bmatrix} 
+        1 \\ 0 
+    \end{bmatrix} \otimes
+    \begin{bmatrix} 
+        1 \\ 0 
+    \end{bmatrix} \otimes
+	\begin{bmatrix} 
+        1 \\ 0 
+    \end{bmatrix}	=
+    \begin{bmatrix} 
+        1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+\end{bmatrix}^T\]
+
+<p>As you can see, this notation is very cumbersome, especially when dealing with large qubit systems whose vector size grows exponentially. For this reason, quantum scientists developed a shorthand form - Dirac notation - that concisely represents the constituent qubits of a system. In this notation, the 3-qubit system seen before is written as \(\ket{000}\). Much more compact! Another reason for wanting to work in Dirac notation is that quantum gates often operate on a small part of the whole set of qubits, so it’s useful to represent them as separate systems.</p>
+
+<p>There is more! Scientists came up with many different ways of shortening and re-writing the notation while meaning the same thing. 
+Here is a quick reference of alternative ways you can use to refer to a quantum system (in this case we take \(\ket{000}\) as an example, but it works with any other multiqubit state). Remember, these are all different ways of writing the same \(\ket{000} = [1, 0, 0, 0, 0, 0, 0, 0]^T\) state:</p>
+
+<ul>
+  <li>\(\ket{0} \otimes \ket{0} \otimes \ket{0}\): Mathematical definition of stacking together multiple qubits in the same ket.</li>
+  <li>\(\ket{0} \ket{0} \ket{0}\): Shorthand for the Kronecker product.</li>
+  <li>\(\ket{0} \ket{00}\): The way qubits are split in different kets can be moved around.</li>
+  <li>\(\ket{0}^{\otimes 3}\): Three concatenated \(\ket{0}\) states.</li>
+</ul>
+
+<p>Let’s now take a different case. Suppose that we want to write a <em>full</em> superposition of all states in an \(n\)-qubit system. It would look somewhat like \((\ket{00\ldots0} + \cdots + \ket{11\ldots1})/\sqrt{n}\), which is again very long. A shorthand way to represent the same state is the following:</p>
+
+\[\frac{1}{\sqrt{n}}\sum_{x \in \{0,1\}^n}\ket{x}\]
+
+<p>For example, the 2-qubit superposition \((\ket{00} + \ket{01} + \ket{10} + \ket{11})/2\) becomes \(\frac{1}{2}\sum_{x \in \{0,1\}^2}\ket{x}\). This notation often pops up when dealing with quantum algorithms.</p>
+
+<h3 id="quantum-gates-in-dirac-notation">Quantum gates in Dirac notation</h3>
+<p>When dealing with quantum computations, you may deal with long and cumbersome operations that cannot be further reduced. A way of speeding up your calculations is to work directly in Dirac notation. To do so, we first need to lay down some rules to make sure we are playing the game correctly.</p>
+
+<h4 id="rule-of-behaviours">Rule of behaviours</h4>
+<p>All gates act in easy to describe ways. The outcome of passing a superposition through a gate can be obtained by applying the gate separately on each basis state and summing the results. Moreover, you can deduce this behavior by looking at the columns of the matrix form of the gate, in the same way we did for the matrix prodct. Let’s take a look at an example that shows how to transition from matrix notation to the Dirac one.</p>
+
+<p>Let’s consider gate \(H\) applied on \(\ket{+} = (\ket{0} + \ket{1})/\sqrt{2}\):
+\(H\ket{+} =
+\begin{bmatrix} 
+	\color{red}1 &amp; \color{blue}1 \\ 
+	\color{red}1 &amp; \color{blue}-1
+\end{bmatrix} \frac{1}{\sqrt{2}}
+\begin{bmatrix} 
+	1 \\ 
+	1
+\end{bmatrix}\frac{1}{\sqrt{2}} =
+(H\ket{0} + H\ket{1})/\sqrt{2}\)
+Remember how all kets actually represent column vectors? We use that same rule to convert back from vectors to ket, and rewrite the application of \(H\) in a different way. Now, we can read the columns of H (in \(\color{red}red\) and \(\color{blue}blue\)) to understand how they will change the states they’re applied to:</p>
+
+\[(H\ket{0} + H\ket{1})/\sqrt{2} =
+({\color{red}\ket{0} + \ket{1}} + {\color{blue}\ket{0} - \ket{1}})/2 =
+\ket{0}\]
+
+<p>Indeed, the first column of \(H\) is \([1,1]^T/\sqrt{2}\) and \(\ket{0}\) is transformed in a state with the same meaning: \(\ket{0} + \ket{1} = [1,1]^T/\sqrt{2}\).</p>
+
+<p>Here is a table summarizing the behaviours of the main gates:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gate</th>
+      <th>Symbol</th>
+      <th>Mapping</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Identity</td>
+      <td>\(I\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{0}\) <br /> \(\ket{1} \longrightarrow \ket{1}\)</td>
+      <td>Does nothing</td>
+    </tr>
+    <tr>
+      <td>Pauli-X</td>
+      <td>\(X\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{1}\) <br /> \(\ket{1} \longrightarrow \ket{0}\)</td>
+      <td>Quantum NOT. Turns \(0\) to \(1\) and viceversa</td>
+    </tr>
+    <tr>
+      <td>Pauli-Y</td>
+      <td>\(Y\)</td>
+      <td>\(\ket{0} \longrightarrow i\ket{1}\) \(\ket{1} \longrightarrow -i\ket{0}\)</td>
+      <td>Similar to \(X\), but multiplies by \(i\) or \(-i\)</td>
+    </tr>
+    <tr>
+      <td>Pauli-Z</td>
+      <td>\(Z\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{0}\) \(\ket{1} \longrightarrow -\ket{1}\)</td>
+      <td>Similar to \(I\), but flips the sign of nonzero inputs</td>
+    </tr>
+    <tr>
+      <td>Hadamard</td>
+      <td>\(H\)</td>
+      <td>\(\ket{0} \longrightarrow (\ket{0} + \ket{1})/\sqrt{2}\) \(\ket{1} \longrightarrow (\ket{0} - \ket{1})/\sqrt{2}\)</td>
+      <td>Creates a superposition</td>
+    </tr>
+    <tr>
+      <td>\(\varphi\) Phase Shift</td>
+      <td>\(P(\varphi)\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{0}\) \(\ket{1} \longrightarrow e^{i\varphi}\ket{1}\)</td>
+      <td>Shifts \(\ket{1}\) inputs by a specific phase</td>
+    </tr>
+    <tr>
+      <td>CNOT</td>
+      <td>\(\text{CNOT}\)</td>
+      <td>\(\ket{00} \longrightarrow \ket{00}\) \(\ket{01} \longrightarrow \ket{01}\) \(\ket{10} \longrightarrow \ket{11}\) \(\ket{11} \longrightarrow \ket{10}\)</td>
+      <td>If the first qubit is \(1\), it flips the second qubit</td>
+    </tr>
+    <tr>
+      <td>SWAP</td>
+      <td>\(\text{SWAP}\)</td>
+      <td>\(\ket{00} \longrightarrow \ket{00}\) \(\ket{01} \longrightarrow \ket{10}\) \(\ket{10} \longrightarrow \ket{01}\) \(\ket{11} \longrightarrow \ket{11}\)</td>
+      <td>Swaps the two qubits</td>
+    </tr>
+    <tr>
+      <td>Controlled-Z</td>
+      <td>\(CZ\)</td>
+      <td>\(\ket{00} \longrightarrow \ket{00}\) \(\ket{01} \longrightarrow \ket{01}\) \(\ket{10} \longrightarrow \ket{10}\) \(\ket{11} \longrightarrow -\ket{11}\)</td>
+      <td>Flips the sign of the target qubit if both qubits are in the \(1\) state</td>
+    </tr>
+    <tr>
+      <td>Toffoli</td>
+      <td>\(CCX\)</td>
+      <td>\(\ket{010} \longrightarrow \ket{010}\) \(\ket{110} \longrightarrow \ket{111}\) \(\ket{111} \longrightarrow \ket{110}\)</td>
+      <td>Flips the third qubit if both first and second qubits are \(1\) (only some examples shown)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="rule-of-parallel-gates">Rule of parallel gates</h4>
+<p>Gates stack like states do. In other words, one can represent three parallel \(H\) gates  with a tensor product: \(H \otimes H \otimes H\). A shorthand notation is \(H^{\otimes 3}\). The resulting gate can handle 3-qubit systems, so \(H^{\otimes 3} \ket{000}\) would be a valid operation.</p>
+
+<h4 id="rule-of-matching-sizes">Rule of matching sizes</h4>
+<p>In Dirac notation, a gate is always applied to the state to its right. States and the gates we pass them through must match in size. For example, the operation \(\text{CNOT} \ket{000}\) doesn’t make sense because the \(\text{CNOT}\) gate expects 2 qubits as input, while we are feeding it a 3-qubit system. A correct way to apply a \(\text{CNOT}\) to only the first two qubits would be \((\text{CNOT} \otimes I) \ket{000}\) or \(\text{CNOT}\ket{00} \ket{0}\).</p>
+
+<p>Let’s now see how one can use these shortcuts to work through the math without using the lengthy matrix notation.</p>
+
+<h4 id="example-1---single-qubit-gates-in-dirac-notation">Example 1 - Single-qubit gates in Dirac notation</h4>
+<p>Write the result of applying the gate \(YHX\) on state \(\ket{1}\)</p>
+
+\[\begin{align*}
+	YHX \ket{1} &amp;= YH {\color{red}\ket{0}} &amp; &amp;\text{Start by flipping the qubit} \\
+	&amp;= Y \color{red}(\ket{0} + \ket{1})/\sqrt{2} &amp; &amp;\text{Use H to build the superposition} \\
+	&amp;= ({\color{red}Y} \ket{0} + {\color{red}Y} \ket{1})/\sqrt{2} &amp; &amp;\text{Carry the Y inside } \\
+	&amp;= ( {\color{red}i\ket{1}} {\color{red}-i\ket{0}})/\sqrt{2} &amp; &amp;\text{Apply Y separately to each basis state} \\
+\end{align*}\]
+
+<h4 id="example-2---multiple-qubit-gates-in-dirac-notation">Example 2 - Multiple-qubit gates in Dirac notation</h4>
+<p>Write the result of applying the gate \((X^{\otimes 3}) (X \otimes \text{CNOT}) (\text{CNOT} \otimes I)\) on state \(\ket{101}\)</p>
+
+<p>\(\begin{align*}
+	(X^{\otimes 3}) (X \otimes \text{CNOT}) (\text{CNOT} \otimes I) \ket{101} &amp;= (X^{\otimes 3}) (X \otimes \text{CNOT}) \ket{1{\color{red}1}1} &amp; &amp;\text{Controlled flip operation on second qubit} \\
+	&amp;= (X^{\otimes 3}) \ket{\phantom{}{\color{red}0}1{\color{red}0}} &amp; &amp;\text{Flip of first qubit and controlled flip of third qubit} \\
+	&amp;= \ket{\color{red}101} &amp; &amp;\text{Flip of all qubits} \\
+\end{align*}\)
+Notice how the gate used in the example respects the rule of matching sizes, and notice how by applying the rule of behaviours we solved an otherwise very large matrix multiplication in just a few steps!</p>
+
+<h3 id="reading-quantum-circuits">Reading quantum circuits</h3>
+
+<p>Oftentimes, papers and books present quantum algorithms using the circuit that describes them. Going from the diagram to the math and viceversa can be confusing, therefore we summarized here some useful rules to keep in mind in order to correctly interpret the notation.</p>
+
+<ul>
+  <li>Gates in series correspond to consecutive matrix products</li>
+</ul>
+
+\[\ket{s'} = T X H \ket{s}\]
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/fig-series-qcircuit-output-1.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 1: Three gates in series on a single qubit.</i>
+</div>
+</div>
+
+<ul>
+  <li>Gates in parallel correspond to a tensor product</li>
+</ul>
+
+\[\ket{s'} = (\text{CNOT} \otimes I)(I \otimes \text{CNOT})(H \otimes X \otimes I) \ket{s}\]
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/fig-parallel-qcircuit-output-1.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 2: Multiple gates in parallel on 3 qubits. Note how <b>s</b> is actually a 3-qubit system.</i>
+</div>
+</div>
+
+<p>As a sanity check, remember that the formula you obtain must satisfy the “rule of matching sizes”. Translating a diagram and finding something like \(CNOT \ket{0}\) is a sign that something went wrong.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>If you got this far, congratulations! This article is very dense and tries to summarise many concepts in the simplest way possible. Don’t worry if you couldn’t memorize all notions, it’s normal to feel this way. The purpose of this article is to be a quick guide to return to in case you stumble upon some confusing math later on. Remember to come back from time to time, as new tips and tricks may be added later on. See you soon!</p>
+
+<h2 id="quantum-gate-summary-table">Quantum gate summary table</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gate</th>
+      <th>Symbol</th>
+      <th>Mapping</th>
+      <th>Matrix form</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Identity</td>
+      <td>\(I\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{0}\) <br /> \(\ket{1} \longrightarrow \ket{1}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1\end{bmatrix}\)</td>
+      <td>Does nothing</td>
+    </tr>
+    <tr>
+      <td>Pauli-X</td>
+      <td>\(X\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{1}\) <br /> \(\ket{1} \longrightarrow \ket{0}\)</td>
+      <td>\(\begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0\end{bmatrix}\)</td>
+      <td>Quantum NOT. Turns \(0\) to \(1\) and viceversa</td>
+    </tr>
+    <tr>
+      <td>Pauli-Y</td>
+      <td>\(Y\)</td>
+      <td>\(\ket{0} \longrightarrow i\ket{1}\) \(\ket{1} \longrightarrow -i\ket{0}\)</td>
+      <td>\(\begin{bmatrix} 0 &amp; -i \\ i &amp; 0\end{bmatrix}\)</td>
+      <td>Similar to \(X\), but multiplies by \(i\) or \(-i\)</td>
+    </tr>
+    <tr>
+      <td>Pauli-Z</td>
+      <td>\(Z\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{0}\) \(\ket{1} \longrightarrow -\ket{1}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1\end{bmatrix}\)</td>
+      <td>Similar to \(I\), but flips the sign of nonzero inputs</td>
+    </tr>
+    <tr>
+      <td>Hadamard</td>
+      <td>\(H\)</td>
+      <td>\(\ket{0} \longrightarrow (\ket{0} + \ket{1})/\sqrt{2}\) \(\ket{1} \longrightarrow (\ket{0} - \ket{1})/\sqrt{2}\)</td>
+      <td>\(\frac{1}{\sqrt{2}}\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1\end{bmatrix}\)</td>
+      <td>Creates a superposition</td>
+    </tr>
+    <tr>
+      <td>\(\varphi\) Phase Shift</td>
+      <td>\(P(\varphi)\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{0}\) \(\ket{1} \longrightarrow e^{i\varphi}\ket{1}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{i\varphi}\end{bmatrix}\)</td>
+      <td>Shifts \(\ket{1}\) inputs by a specific phase</td>
+    </tr>
+    <tr>
+      <td>CNOT</td>
+      <td>\(\text{CNOT}\)</td>
+      <td>\(\ket{00} \longrightarrow \ket{00}\) \(\ket{01} \longrightarrow \ket{01}\) \(\ket{10} \longrightarrow \ket{11}\) \(\ket{11} \longrightarrow \ket{10}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \end{bmatrix}\)</td>
+      <td>If the first qubit is \(1\), it flips the second qubit</td>
+    </tr>
+    <tr>
+      <td>SWAP</td>
+      <td>\(\text{SWAP}\)</td>
+      <td>\(\ket{00} \longrightarrow \ket{00}\) \(\ket{01} \longrightarrow \ket{10}\) \(\ket{10} \longrightarrow \ket{01}\) \(\ket{11} \longrightarrow \ket{11}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{bmatrix}\)</td>
+      <td>Swaps the two qubits</td>
+    </tr>
+    <tr>
+      <td>Controlled-Z</td>
+      <td>\(CZ\)</td>
+      <td>\(\ket{00} \longrightarrow \ket{00}\) \(\ket{01} \longrightarrow \ket{01}\) \(\ket{10} \longrightarrow \ket{10}\) \(\ket{11} \longrightarrow -\ket{11}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; -1 \end{bmatrix}\)</td>
+      <td>Flips the sign of the target qubit if both qubits are in the \(1\) state</td>
+    </tr>
+    <tr>
+      <td>Toffoli</td>
+      <td>\(CCX\)</td>
+      <td>\(\ket{010} \longrightarrow \ket{010}\) \(\ket{110} \longrightarrow \ket{111}\) \(\ket{111} \longrightarrow \ket{110}\)</td>
+      <td>(Omitted for readability)</td>
+      <td>Flips the third qubit if both first and second qubits are \(1\) (only some examples shown)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sources">Sources</h2>
+
+<p>Nielsen, M., &amp; Chuang, I. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press. doi:10.1017/CBO9780511976667</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-07-19T00:00:00+00:00">July 19, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=The+Quantum+Game%20https%3A%2F%2Fthe-quantumist.github.io%2F2023%2F07%2F19%2Fthe-quantum-game.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthe-quantumist.github.io%2F2023%2F07%2F19%2Fthe-quantum-game.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fthe-quantumist.github.io%2F2023%2F07%2F19%2Fthe-quantum-game.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/2023/05/14/quantum-computing-for-computer-engineers-part-3.html" class="pagination--pager" title="Quantum Computing for Computer Engineers - Part 3
+">Previous</a>
+    
+    
+      <a href="/2023/09/18/model-collapse.html" class="pagination--pager" title="The snake biting its own tail: a brief overview of LLM collapse
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <!-- giscus Support -->
+    <script src="https://giscus.app/client.js"
+    data-repo="the-quantumist/the-quantumist.github.io"
+    data-repo-id="R_kgDOIUt2DA"
+    data-category="Comments"
+    data-category-id="DIC_kwDOIUt2DM4CSiDm"
+    data-mapping="url"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light_high_contrast"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+    </script>
+  </article>
+
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You May Also Enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2023/09/18/model-collapse.html" rel="permalink">The snake biting its own tail: a brief overview of LLM collapse
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">Sep 18, 2023</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#machine-learning">MACHINE LEARNING</a>,
+        
+        <a class="tag"
+          href="/tags#large-language-models">LARGE LANGUAGE MODELS</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Scientists in the 1940s encountered a particular problem: newly-produced equipment for detecting radiation was recording a faint but constant signal, making ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2023/05/14/quantum-computing-for-computer-engineers-part-3.html" rel="permalink">Quantum Computing for Computer Engineers - Part 3
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">May 14, 2023</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">So far, yet so close
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2023/01/31/quantum-computing-for-computer-engineers-part-2.html" rel="permalink">Quantum Computing for Computer Engineers - Part 2
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">Jan 31, 2023</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Where are the other 432?
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/11/01/quantum-computing-for-computer-engineers-part-1.html" rel="permalink">Quantum Computing for Computer Engineers - Part 1
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">Nov 01, 2022</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Qubits and quantum gates
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 The Quantumist. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

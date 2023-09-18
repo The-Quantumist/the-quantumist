@@ -1,0 +1,1076 @@
+<!-- Mathjax Support -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      packages: ['base', 'ams', 'braket', 'color']
+    },
+    loader: {
+      load: ['ui/menu', '[tex]/ams', '[tex]/braket', '[tex]/color']
+    }
+  };
+  </script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Quantum Computing for Computer Engineers - Part 3 - The Quantumist</title>
+<meta name="description" content="So far, yet so close">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Quantumist">
+<meta property="og:title" content="Quantum Computing for Computer Engineers - Part 3">
+<meta property="og:url" content="https://the-quantumist.github.io/2023/05/14/quantum-computing-for-computer-engineers-part-3.html">
+
+
+  <meta property="og:description" content="So far, yet so close">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-05-14T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://the-quantumist.github.io/2023/05/14/quantum-computing-for-computer-engineers-part-3.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "The Quantumist",
+      "url": "https://the-quantumist.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Quantumist Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single_multiple_authors">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          The Quantumist
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/tags">Posts by tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/posts">Posts by date</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+    <h3>Authors</h3>
+    
+
+
+
+
+  
+  <div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+    
+      <div class="author__avatar">
+        <a href="https://the-quantumist.github.io/">
+          <img src="/assets/images/authors-icons/gilberto-manunza.png" alt="Gilberto Manunza" itemprop="image" class="u-photo">
+        </a>
+      </div>
+    
+
+    <div class="author__content">
+      <h3 class="author__name p-name" itemprop="name">
+        <a class="u-url" rel="me" href="https://the-quantumist.github.io/" itemprop="url">Gilberto Manunza</a>
+      </h3>
+    </div>
+
+    <div class="author__urls-wrapper">
+      <button class="btn btn--inverse">Follow</button>
+      <ul class="author__urls social-icons">
+        
+
+        
+          
+            
+              <li><a href="mailto:gilbertomanunza@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+            
+          
+            
+              <li><a href="https://github.com/gialbo" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github-square" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+            
+          
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- 
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li> -->
+
+      </ul>
+    </div>
+  </div>
+
+
+  
+  <div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+    
+      <div class="author__avatar">
+        <a href="https://the-quantumist.github.io/">
+          <img src="/assets/images/authors-icons/federico-tiblias.jpeg" alt="Federico Tiblias" itemprop="image" class="u-photo">
+        </a>
+      </div>
+    
+
+    <div class="author__content">
+      <h3 class="author__name p-name" itemprop="name">
+        <a class="u-url" rel="me" href="https://the-quantumist.github.io/" itemprop="url">Federico Tiblias</a>
+      </h3>
+    </div>
+
+    <div class="author__urls-wrapper">
+      <button class="btn btn--inverse">Follow</button>
+      <ul class="author__urls social-icons">
+        
+
+        
+          
+            
+              <li><a href="mailto:f.tiblias@live.it" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+            
+          
+            
+              <li><a href="https://github.com/akatief" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github-square" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+            
+          
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- 
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li> -->
+
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Quantum Computing for Computer Engineers - Part 3">
+    <meta itemprop="description" content="So far, yet so close">
+    <meta itemprop="datePublished" content="2023-05-14T00:00:00+00:00">
+    
+
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://the-quantumist.github.io/2023/05/14/quantum-computing-for-computer-engineers-part-3.html" class="u-url" itemprop="url">Quantum Computing for Computer Engineers - Part 3
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#so-far-yet-so-close">So far, yet so close</a><ul><li><a href="#bell-states">Bell States</a></li><li><a href="#superdense-coding">Superdense coding</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#sources">Sources</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="so-far-yet-so-close">So far, yet so close</h1>
+
+<p>Imagine you have two bowling balls, one is black and one is white. You put these balls in two boxes, mix them up, and now you can’t tell which box contains which ball. Let’s suppose you gift one box to your friend who is about to leave for a very long journey to Proxima Centauri. After some years you crack open the remaining box and  voila - you find the black ball inside. In this exact moment you automagically know that in the other box, which now is in proxima centauri, there is a white ball (assuming it did not get destroyed by aliens on its dangerous journey). How incredible is that? Probably your answer is “not much”, it’s something quite normal. Is there any quantum weirdness going on? Definitely not, it’s just good ol’ correlation at work. We can safely say that the result of the measurements are \(100\%\) correlated but there is nothing we cannot explain with normal probability.</p>
+
+<p>Let’s take the previous experiment up a notch, shall we? This time, instead of bowling balls, we’re using two coins. But wait, there’s a twist - we’re making these coins spin with so much force that they’ll keep spinning indefinitely (or until we ruin the fun by touching them). While the coins are still spinning, we toss them into two boxes. But that’s not all. We also run these boxes through a special machine that can link the coins in a mysterious way while they’re still spinning. This link ensures that if we open one box, touch the coin inside and measure which side it lands (say, heads), the other coin - when we touch it - will land on the opposite side (tails), and vice versa. Sounds impossible, right?</p>
+
+<p>Here’s what would happen if we repeat the previous experiment: if we ship one box to Proxima Centauri and, after some time, we measure the other box’s coin, we’ll instantly know which side the coin in the faraway box has landed on. This, my friend, is what we call <em>entanglement</em>. The difference between the bowling balls and the coins is that with the balls, we already knew which one was black and which one was white. But with the coins, we didn’t know ahead of time which side they would land, only that they would be opposite of each other. Since a coin can have a \(50/50\) chance of landing on heads or tails, while still spinning it can be considered to be in both states at the same time - just like a qubit is in a superposition of two states.</p>
+
+<p>Does this mean that the coins are communicating instantly no matter their distance, even faster than the speed of light? Well, yes and no. In a certain sense the coins are linked in a way that is non-dependent on their relative position: if one lands on the head the other will land on the tail. This is the so called <em>non-locality principle</em>. Unfortunately, we cannot use this phenomenon to communicate instantly: our friend on Proxima Centauri won’t know the result of our measurement if we don’t tell them in a conventional way, nor will they know whether or not our coin is still spinning. The only thing they’ll know is that if they measure head, you will measure tail and viceversa, just like with the balls. So no ways to “hack” the universe, unfortunately the no free lunch theorem is still valid. Does this mean entanglement is useless? Definitely not! On the contrary, it is a very important phenomenon with many uses. Through this article we are going to better define how it works, walk you through the math, and show you one possible application.</p>
+
+<h2 id="bell-states">Bell States</h2>
+<p>Let’s now introduce the concept of entanglement in a more formal way through the so called <em>Bell states</em>. Bell states are four specific two-qubit systems that cannot be created by simply combining two one-qubit systems. How can we go about creating one then?</p>
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/fig-bell-qcircuit-output-1.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 1: The Bell states circuit.</i>
+</div>
+</div>
+
+<p>Pretty confusing, right? Let’s do the math step by step. First of all remember that the Hadamard gate can be described in this form:</p>
+
+\[H = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1 &amp; 1 \\
+    1 &amp; -1
+    \end{bmatrix}\]
+
+<p>But, wait a second! The Hadamard gate is a single qubit gate, how can we apply it to a qubit system? We should find a way to build a two-qubit gate that applies the Hadamard just to the first without toching the second. We can see the situation as having two single qubit gates acting in parallel, the Hadamard (on the first) and the identity gate (on the second). As we saw in another <a href="https://the-quantumist.github.io/2023/01/31/quantum-computing-for-computer-engineers-part-2.html">previous article</a>, we can go from a single qubit system to a multiple qubit system by applying the Kronecker product. The good news is that we can do the same to combine two single qubit gates in parallel into one multiple qubit gate:</p>
+
+\[H \otimes I = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1 &amp; 1 \\
+    1 &amp; -1
+    \end{bmatrix} \otimes \begin{bmatrix}
+    1 &amp; 0 \\
+    0 &amp; 1
+    \end{bmatrix} = \frac{1}{\sqrt{2}}
+\begin{bmatrix}
+    1&amp;0&amp;1&amp;0\\
+    0&amp;1&amp;0&amp;1\\
+    1&amp;0&amp;-1&amp;0\\
+    0&amp;1&amp;0&amp;-1
+\end{bmatrix}\]
+
+<p>This is a general rule that becomes very handy to put gates in parallel. Now let’s suppose our \(\ket{\psi}\) system is the state \(\ket{00}\), meaning that we are \(100\%\) sure both qubits are zero. In formulas, \(\ket{\psi} = [1, 0, 0, 0]^T\). Then, we can apply the \(H\) to the first qubit, thus obtaining:</p>
+
+\[\ket{\psi_H} = 
+(H \otimes I)\ket{\psi} =
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+    1&amp;0&amp;1&amp;0\\
+    0&amp;1&amp;0&amp;1\\
+    1&amp;0&amp;-1&amp;0\\
+    0&amp;1&amp;0&amp;-1
+\end{bmatrix}
+\begin{bmatrix}
+  1 \\
+  0 \\
+  0 \\
+  0 \\
+\end{bmatrix} = 
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+  1 \\
+  0 \\
+  1 \\
+  0 \\
+\end{bmatrix}\]
+
+<p>Now let’s take the full state and apply the CNOT gate \(U_{CN}\), this time in <em>series</em>, so instead of the Kronecker product we use a matrix multiplication:</p>
+
+\[\begin{align*}
+\ket{\psi_{HCN}} &amp; = \frac{1}{\sqrt{2}} U_{CN}\ket{\psi_H}
+= \begin{bmatrix}
+    1&amp;0&amp;0&amp;0\\
+    0&amp;1&amp;0&amp;0\\
+    0&amp;0&amp;0&amp;1\\
+    0&amp;0&amp;1&amp;0
+\end{bmatrix}
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+  1 \\
+  0 \\
+  1 \\
+  0 \\
+\end{bmatrix}  \\
+&amp; = \frac{1}{\sqrt{2}}
+\begin{bmatrix}
+  1 \\
+  0 \\
+  0 \\
+  1 \\
+\end{bmatrix} =
+\frac{\ket{00}+\ket{11}}{\sqrt{2}}
+\end{align*}\]
+
+<p>That’s one of the Bell States, the others are obtained in an analogous way by applying the same gates \(U_{CN} (H \otimes I)\) to the other <em>basis states</em>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Input (\(\ket{\psi}\))</th>
+      <th>Output (\(\ket{\psi_{HCN}}\))</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(\ket{00}\)</td>
+      <td>\(\frac{\ket{00}+\ket{11}}{\sqrt{2}}\)</td>
+    </tr>
+    <tr>
+      <td>\(\ket{01}\)</td>
+      <td>\(\frac{\ket{01}+\ket{10}}{\sqrt{2}}\)</td>
+    </tr>
+    <tr>
+      <td>\(\ket{10}\)</td>
+      <td>\(\frac{\ket{00}-\ket{11}}{\sqrt{2}}\)</td>
+    </tr>
+    <tr>
+      <td>\(\ket{11}\)</td>
+      <td>\(\frac{\ket{01}-\ket{11}}{\sqrt{2}}\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Pretty complicated, right? We strongly believe that the best way to learn this sort of things in quantum computing is to sit down and do the math. We recommend taking your time to redo the calculations with pen and paper for the other states to check for yourself that everything is right. Of course this process becomes cumbersome as we consider larger systems, but it’s worth the effort for small examples, to get the concept right.</p>
+
+<p>A question you may have is: “Ok, we have these fancy states, but why are they so important?”
+Let’s take a closer look at the state \(\frac{\ket{00}+\ket{11}}{\sqrt{2}}\). It describes a two qubit system which can be observed with \(50\%\) probability in state \(00\) and with \(50\%\) in state \(11\). This means that if we measure independently the first qubit and observe \(0\), then also the second qubit will be \(0\), viceversa if we measure \(1\) we will also observe \(1\) on the second qubit. These qubits are therefore linked: we don’t know their states a priori, but we know that when measured they will yield the same result! As explained in the introduction, this relationship holds no matter how far these two qubits are in space or time, and it’s due to what quantum physicists call <strong>non-locality principle</strong>. With a bunch of linear algebra we were able to describe mathematically such a deep and mysterious concept that regulates the universe, how cool is that?</p>
+
+<p>Things become even more interesting if we try to split the two qubits. Given</p>
+
+\[\ket{\psi_{HCN}} =
+	\begin{bmatrix}
+	\psi_{00}  \\
+	\psi_{01}  \\
+	\psi_{10}  \\
+	\psi_{11}  \\
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+	1  \\
+	0  \\
+	0  \\
+	1  \\
+	\end{bmatrix}\frac{1}{\sqrt{2}}\]
+
+<p>Can we find the coefficients \(\psi_{ij}\) such that we are able to write the system as the Kronecker product of the two qubits? As we already described in the previous article, we can’t. This means we cannot obtain a Bell state by simply considering two separate qubits as one system. Instead, we necessarily need to construct them via quantum gates. The result is two objects that cannot be described on their own. This impossibility explains the difference between bowling balls and spinning coins, it’s something classical probability simply cannot describe and that’s the reason we look at the quantum formalism instead.</p>
+
+<h2 id="superdense-coding">Superdense coding</h2>
+
+<p>Now, let’s use the concept we just learnt to do something concrete! We will show that by using the Bell states we can send two bits of information by transmitting just one qubit. The setup looks like this: we have two friends, Alice and Bob, that want to share some information over a “quantum wire”. They each receive beforehand one qubit of the entangled Bell state \(\ket{\psi_0} = \frac{\ket{00} + \ket{11}}{\sqrt{2}}\). Alice then modifies her qubit in a smart way to codify two classical bits, obtaining \(\ket{\psi_1}\), and sends it to Bob. Bob compares his qubit with the one he has received from Alice and immediately recognizes the two bits Alice wanted him to have, obtaining the state \(\ket{\psi_2}\). It’s true that Bob received two qubits overall, but the information did not yet exist when he received the first one. We can see superdense coding as a way of sharing an “information credit” ahead of time, and then spend it at the right moment by sending half the qubits we normally would.
+An example of a quantum circuit able to do this kind of magic is shown in Figure 2, where \(q_{Alice}\) and \(q_{Bob}\) both start in the state \(\ket{00}\) (they are both \(0\) with \(100\%\) probability).</p>
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/fig-superdense-qcircuit-output-1.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 2: The superdense coding circuit.</i>
+</div>
+</div>
+
+<p>Let’s do the math step by step. The first part is easy: we start from the state \(\ket{00}\) and we apply the Bell circuit to obtain \(\frac{\ket{00} + \ket{11}}{\sqrt{2}}\). Now, suppose Alice wants to send two classical bits \(01\) to Bob. To do that, she applies a \(Z\) gate to her qubit; this is a single qubit gate that can be written as:</p>
+
+\[Z=\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; -1 \\
+\end{bmatrix}\]
+
+<p>Remember we are in a two qubit system so to apply the \(Z\) gate to the fist qubit means to apply the identity gate to the second in parallel. We can do this even though the two qubits are separated, this is simply a way of representing operations on the system as a whole and does not depend on the position in space of its constituent qubits. The resulting gate can be derived with the Kronecker product:</p>
+
+\[Z\otimes I = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; -1 \\
+\end{bmatrix} \otimes \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1 \\
+\end{bmatrix} =
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; -1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; -1 \\
+\end{bmatrix}\]
+
+<p>Now let’s pass the system through the gate:</p>
+
+\[\begin{align*}
+	(Z\otimes I) \ket{\psi_0} &amp;=
+	\begin{bmatrix}
+	1 &amp; 0 &amp; 0 &amp; 0 \\
+	0 &amp; 1 &amp; 0 &amp; 0 \\
+	0 &amp; 0 &amp; -1 &amp; 0 \\
+	0 &amp; 0 &amp; 0 &amp; -1 \\
+	\end{bmatrix}\frac{1}{\sqrt{2}}\begin{bmatrix}
+	1  \\
+	0  \\
+	0  \\
+	1  \\
+	\end{bmatrix}\\ 
+    &amp; = 
+	\frac{1}{\sqrt{2}}\begin{bmatrix}
+	1  \\
+	0  \\
+	0  \\
+	-1  \\
+	\end{bmatrix} = \frac{\ket{00} - \ket{11}}{\sqrt{2}}\\
+    &amp; =
+	\ket{\psi_1}
+\end{align*}\]
+
+<p>Note how Alice, by modifying her qubit, is able to modify the whole system. Now she sends her qubit to Bob. All that is left to do for Bob is to extract the information encoded by Alice and measure the system. In other words Bob needs to go from this Bell state \(\ket{\psi_1}\) to one where the outcome is certain. How can he do that? Well, rember from the first article that all quantum gates are reversible? Bob can apply the inverse of the gates used in the previous section to revert the entanglement while keeping the effect of the \(Z\) gate used by Alice, thus going back to the basis state. This means a CNOT on both qubits followed by an Hadamard gate on the first one.</p>
+
+<p>After the CNOT, we get:</p>
+
+\[U_{CN} \ket{\psi_1} = \begin{bmatrix}
+    1&amp;0&amp;0&amp;0\\
+    0&amp;1&amp;0&amp;0\\
+    0&amp;0&amp;0&amp;1\\
+    0&amp;0&amp;1&amp;0
+\end{bmatrix}\frac{1}{\sqrt{2}}\begin{bmatrix}
+	1  \\
+	0  \\
+	0  \\
+	-1  \\
+	\end{bmatrix} =
+  \frac{1}{\sqrt{2}}\begin{bmatrix}
+	1  \\
+	0  \\
+	-1  \\
+	0  \\
+	\end{bmatrix}\]
+
+<p>And afther the Hadamard on the first qubit (same gate used in the first section):</p>
+
+\[\begin{align*}
+\ket{\psi_2} &amp;=
+ (H \otimes I) \frac{1}{\sqrt{2}}\begin{bmatrix}
+	1  \\
+	0  \\
+	-1  \\
+	0  \\
+	\end{bmatrix}
+\frac{1}{\sqrt{2}} =
+\frac{1}{2} 
+\begin{bmatrix}
+    1&amp;0&amp;1&amp;0\\
+    0&amp;1&amp;0&amp;1\\
+    1&amp;0&amp;-1&amp;0\\
+    0&amp;1&amp;0&amp;-1
+\end{bmatrix}
+\begin{bmatrix}
+	1  \\
+	0  \\
+	-1  \\
+	0  \\
+\end{bmatrix} \\ 
+&amp; =
+\frac{1}{2} 
+\begin{bmatrix}
+	0  \\
+	0  \\
+	2  \\
+	0  \\
+	\end{bmatrix}=
+\begin{bmatrix}
+	0  \\
+	0  \\
+	1  \\
+	0  \\
+	\end{bmatrix}
+= \ket{01}
+\end{align*}\]
+
+<p>Now Bob can measure the system and get \(01\) with probability \(100\%\). Alice was thus able to send two bits of information, just by sending one qubit! That’s superdense coding.</p>
+
+<p>Now you would ask: “Ok, this works for \(01\). What about the other values?”. Alice can encode the 4 different values \(00\), \(01\), \(10\), \(11\) simply by changing the initial gate that is applied to her entangled qubit. This results in a different Bell state for every choice, that Bob can then revert back to a clear answer. Here is a table showing all the combinations:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value to encode</th>
+      <th>Gate to apply to first qubit</th>
+      <th>Resulting state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(00\)</td>
+      <td>\(I=\begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1\end{bmatrix}\)</td>
+      <td>\(\frac{\ket{00} + \ket{11}}{2}\)</td>
+    </tr>
+    <tr>
+      <td>\(01\)</td>
+      <td>\(Z=\begin{bmatrix}1 &amp; 0 \\ 0 &amp; -1\end{bmatrix}\)</td>
+      <td>\(\frac{\ket{00} - \ket{11}}{2}\)</td>
+    </tr>
+    <tr>
+      <td>\(10\)</td>
+      <td>\(X=\begin{bmatrix}0 &amp; 1 \\ 1 &amp; 0\end{bmatrix}\)</td>
+      <td>\(\frac{\ket{10} + \ket{01}}{2}\)</td>
+    </tr>
+    <tr>
+      <td>\(11\)</td>
+      <td>\(ZX=\begin{bmatrix}0 &amp; 1 \\ -1 &amp; 0\end{bmatrix}\)</td>
+      <td>\(\frac{\ket{01} - \ket{10}}{2}\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where \(X\) (or Pauli-\(X\)) is simply the one-qubit NOT gate.</p>
+
+<p>Given the different Bell states, Bob can then decode the values in the same way we saw for the particular case of \(01\). We suggest you do the math for the other three possibilities, to be sure Bob decodes the right value.</p>
+
+<p>A final remark you may have is: “This notation is rather cumbersome, can we use the \(H\) gate directly on a qubit instead of using \(H \otimes I\)”?. The answer is no, and the reason was already given earlier: since the two qubits are entangled, they cannot be expressed as a tensor product of two separate systems. All operations on an entangled pair must be mathematically computed on the full system even if they involve only one of the qubits. This gives another hint as why quantum computers are powerful: we can use the properties of entanglement without having to represent a matrix of exponential size. All we need are the smaller gates.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Quite a lot of stuff we saw in this episode! Here we introduced one of the most important concepts in quantum physics, and we showed with a fair bit of math how to apply it for quantum computing. The superdense coding example is one of many applications of entanglement in quantum theory. Another weird and fascinating thing we can do with it is teleporting qubits! We are eager to cover more on the topic in following articles.</p>
+
+<h2 id="sources">Sources</h2>
+
+<p>Nielsen, M., &amp; Chuang, I. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press. doi:10.1017/CBO9780511976667</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-05-14T00:00:00+00:00">May 14, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Quantum+Computing+for+Computer+Engineers+-+Part+3%20https%3A%2F%2Fthe-quantumist.github.io%2F2023%2F05%2F14%2Fquantum-computing-for-computer-engineers-part-3.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthe-quantumist.github.io%2F2023%2F05%2F14%2Fquantum-computing-for-computer-engineers-part-3.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fthe-quantumist.github.io%2F2023%2F05%2F14%2Fquantum-computing-for-computer-engineers-part-3.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/2023/01/31/quantum-computing-for-computer-engineers-part-2.html" class="pagination--pager" title="Quantum Computing for Computer Engineers - Part 2
+">Previous</a>
+    
+    
+      <a href="/2023/07/19/the-quantum-game.html" class="pagination--pager" title="The Quantum Game
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <!-- giscus Support -->
+    <script src="https://giscus.app/client.js"
+    data-repo="the-quantumist/the-quantumist.github.io"
+    data-repo-id="R_kgDOIUt2DA"
+    data-category="Comments"
+    data-category-id="DIC_kwDOIUt2DM4CSiDm"
+    data-mapping="url"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light_high_contrast"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+    </script>
+  </article>
+
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You May Also Enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2023/09/18/model-collapse.html" rel="permalink">The snake biting its own tail: a brief overview of LLM collapse
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">Sep 18, 2023</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#machine-learning">MACHINE LEARNING</a>,
+        
+        <a class="tag"
+          href="/tags#large-language-models">LARGE LANGUAGE MODELS</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Scientists in the 1940s encountered a particular problem: newly-produced equipment for detecting radiation was recording a faint but constant signal, making ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2023/07/19/the-quantum-game.html" rel="permalink">The Quantum Game
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">Jul 19, 2023</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">A handbook for understanding quantum math in articles
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2023/01/31/quantum-computing-for-computer-engineers-part-2.html" rel="permalink">Quantum Computing for Computer Engineers - Part 2
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">Jan 31, 2023</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Where are the other 432?
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/11/01/quantum-computing-for-computer-engineers-part-1.html" rel="permalink">Quantum Computing for Computer Engineers - Part 1
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">Nov 01, 2022</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Qubits and quantum gates
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 The Quantumist. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

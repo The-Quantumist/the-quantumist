@@ -1,0 +1,1363 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://the-quantumist.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://the-quantumist.github.io/" rel="alternate" type="text/html" /><updated>2023-09-18T22:03:15+00:00</updated><id>https://the-quantumist.github.io/feed.xml</id><title type="html">The Quantumist</title><subtitle>A blog about quantum computers, machine learning and more.</subtitle><author><name>Federico Tiblias, Gilberto Manunza</name></author><entry><title type="html">The snake biting its own tail: a brief overview of LLM collapse</title><link href="https://the-quantumist.github.io/2023/09/18/model-collapse.html" rel="alternate" type="text/html" title="The snake biting its own tail: a brief overview of LLM collapse" /><published>2023-09-18T00:00:00+00:00</published><updated>2023-09-18T00:00:00+00:00</updated><id>https://the-quantumist.github.io/2023/09/18/model-collapse</id><content type="html" xml:base="https://the-quantumist.github.io/2023/09/18/model-collapse.html"><![CDATA[<p>Scientists in the 1940s encountered a particular problem: newly-produced equipment for detecting radiation was recording a <strong>faint but constant signal</strong>, making it impossible to detect radiation below a certain threshold, limiting its sensitivity. Nothing had changed about their manufacturing process, so what was the culprit? The cause - it was later discovered - were <strong>early nuclear weapon tests</strong>. During these events, large quantities of radioactive material were released into the atmosphere. These radioactive particles quickly spread and dispersed slightly raising atmospheric background radiation. Steel production requires large amounts of oxygen. After the nuclear tests in 1945, it was no longer possible to extract it from the atmosphere without also capturing some radioactive particles. These detectors were not reading some unknown external signature, they were reading <strong>radioactivity from their own metal parts</strong>. A sudden event had changed <strong>something</strong> about the fundamental materials these devices were made out of, rendering them less accurate. Manufacturers started to seek out steels produced before the critical date of the first nuclear test, a material now known as <a href="https://qz.com/emails/quartz-obsession/1849564217/low-background-metal-pure-unadulterated-treasure">low-background steel</a>. Something similar is happening, right under our noses, with Large Language Models.</p>
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/warship.jpg" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 1: WW1 warships were often used as a source of low background steel.</i>
+</div>
+</div>
+
+<p><strong>Large Language Models (LLMs)</strong> have quickly spread and become ubiquitous in our day-to-day lives. These complex machines are built by <strong>pre-training</strong> on large swathes of the web, and then by <strong>fine-tuning</strong> on a specific task (for example summarizing the main points of a piece of text). Conversational agents like ChatGPT are further tuned using a technique called <strong>Reinforcement Learning from Human Feedback</strong>, which precisely aligns the output of these assistants with how we expect them to behave. This intricate process has made them valuable tools for many jobs ranging from coding to creative writing.</p>
+
+<p>This pervasiveness might paradoxically become dangerous for LLMs, hindering their birth and development. LLMs are creating an environment that is <strong>toxic</strong> for their own survival, and every piece of generated text that gets uploaded further <strong>intensifies the problem</strong>. How come?</p>
+
+<h2 id="model-collapse">Model collapse</h2>
+<p>Imagine printing a picture, then scanning it, then printing the result, then scanning it… What would the resulting image would look like after repeating this process dozens of times? What if instead of a printer and a photograph you had a LLM and some text?</p>
+
+<p>A group of researchers at Oxford, Cambridge, ICL and University of Toronto asked themselves a very simple question: “What would happen if a generative model <strong>learned</strong> from the same data it <strong>generated</strong>?”. To answer, they first trained a LLM on some data and then used it to generate additional training samples. Then, they trained a new model from scratch on this generated data, and used it to produce the next iteration of training data, repeating the process over and over. At first, nothing bad happened, with only a slight decrease in performance. But then, after enough generations, the model started producing incoherent results and meaningless sentences. With every iteration, the model forgot less common sentences in favor of more frequent ones, flattening the variety of generated samples and further hindering the training of next iterations. This phenomenon was named <a href="https://arxiv.org/abs/2305.17493"><strong>model collapse</strong></a>.</p>
+
+<p>What’s even scarier is that model collapse was observed in other radically <strong>different models</strong> as well. First they experimented on a simple gaussian mixture trying to predict a one-dimensional distribution, then they turned to a Variational Auto Encoder (VAE) for digit generation (the famous MNIST dataset). Across all models, the same patterns emerged: subsequent generations captured <strong>less and less information</strong> from the initial data, resulting in useless models.</p>
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/vae-all.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 2: Model collapse on VAE for MNIST.</i>
+</div>
+</div>
+
+<p>The <strong>cure to collapse</strong>, researchers say, is to keep feeding the models a large proportion of <strong>high-quality data</strong> such as textbooks and articles. This could prevent or at least slow down model collapse until a solution is found. The problem is, we might be soon <strong>running out</strong> of such high-quality data, some estimate as soon as <strong>2026</strong>.</p>
+
+<p>You may think of model collapse as a far-fetched issue that may or may not become significant in decades. Model-generated data is not that pervasive and should not contaminate the natural one for at least a few years, right? Unfortunately, it seems that this process is <strong>already taking place</strong>. Amazon Mechanical Turk (AMK) is a crowdsourcing website often used to build NLP datasets. Users can help labeling data and in exchange they receive a small compensation. A group of researchers at EPFL discovered that between <strong>33% and 46%</strong> of annotator workers used LLMs when completing the task. The choice of task - text summarization - was particularly suited to be automated using LLMs. Crowd workers started prompting ChatGPT in an attempt to complete the task faster, thus earning more. Much like in the low background steel case, it’s becoming increasingly difficult to obtain genuine human-made data. A very recent study also found that traffic to Stack Overflow has been steadily going down since the release of ChatGPT, reaching <strong>-13.9%</strong> in <a href="https://www.similarweb.com/blog/insights/ai-news/stack-overflow-chatgpt/">March 2023</a>. Another variation on this same phenomena affects image generation models: platforms like Instagram or Artstation are being flooded with machine generated content, often without a way to tell it apart from natural data.</p>
+
+<h2 id="implications">Implications</h2>
+
+<p>Models collapse. So what? An immediate consequence we would observe is a decrease in model performance and an increase in hallucinations. Collapsed models tend to generate from a much narrower distribution than its “healthy” counterparts, exhibiting much less variation and nuanced outputs, much like a book whose pages have been torn out. And this process would <strong>accelerate</strong> the more narrow data generated by the model is added to the pool of the next one.</p>
+
+<p>Human language is very complicated. The full range of human written production is made out of poetry, jokes, prose, and infinitely many other unique pieces of expression. A model that learns to write from its own output, losing one page of its book after the other, would soon forget all the richness and variety that made human language complicated in the first place. The first text to be forgotten would be the most rare, creative and precious. Less frequent sentences and styles will disappear in favor of a standard, flatter prose that yields better performance during training. Creativity will be considered an <strong>outlier to correct</strong>. <a href="https://www.newyorker.com/tech/annals-of-technology/chatgpt-is-a-blurry-jpeg-of-the-web">Citing Ted Chiang</a>: “<em>the more that text generated by large language models gets published on the Web, the more the Web becomes a blurrier version of itself</em>”.</p>
+
+<p>Let’s go further, maybe a bit too much. What happens when this blurry picture is fed back to the human in the loop? What happens when we start using these machines as <strong>teaching tools</strong> when learning a new language? Human beings are somewhat similar to LLMs in the sense that they read, learn and produce new ideas based on their experiences. We might become an <strong>active part</strong> of this spiral, generating unoriginal content ourselves and feeding it to the machine teaching us, flying faster and faster towards model collapse, like a <strong>snake biting its own tail</strong>.</p>
+
+<h2 id="a-silver-lining">A silver lining</h2>
+
+<p>This articles depicts a rather bleak future. Luckily, model collapse might not be so certain nor dangerous. A separate group from Microsoft Research recently trained a LLM on generated data from GPT-4, reaching comparable and in some cases <strong>superior</strong> performance to ChatGPT. While it’s true that the performance of the new model didn’t match the original, larger one, it’s also true that it was able to retain most of its capabilities to a significant degree. This may suggest that model collapse is further away than we think. Another reason for reassurance is the fact that the strongest effects of model collapse were observed only in the extreme case where <strong>all</strong> of the training data of consecutive models was <strong>generated</strong> by the previous one and no “fresh” data was added to the dataset. This is not the case in reality, where machine generated data make up only a small portion of all content available on the web. We might also circumvent the issue of stale data altogether by creating methods to detect machine-generated data.</p>
+
+<p>A more speculative reason why model collapse might not be so catastrophic is the fact that human language is extremely <strong>complicated</strong>. So much, in fact, that the possibility of models forgetting useful parts of language to a detectable degree is remote. Moreover, language evolves creating new unique combinations the model has never seen before. Lastly, despite the fact that humans will most certainly use LLMs for learning, that remains a small fraction of the total amount of information a person absorbs during its life. Novelty and creativity will always be driven by <strong>unique experiences</strong>, not just by a machine typing words.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>The objective of this article is to serve as a cautionary tale, raising awareness about a possible problem we will encounter in the future, and possibly encouraging you to read more about it and maybe find a solution! LLMs are becoming more and more pervasive in our lives, and little is known about the consequences they will have on society. Maybe they will shape human production in a duller and boring way, or maybe they’ll evolve alongside the ever changing languages of the world. The deciding factor lies in how well we’ll desing their learning process. Outliers are not friends of this optimization algorithm. Yet, they are exactly what makes human production interesting. Not every anomaly is a mistake, and this, LLMs have not yet learned.</p>]]></content><author><name>Federico Tiblias</name></author><category term="Machine Learning" /><category term="Large Language Models" /><summary type="html"><![CDATA[Scientists in the 1940s encountered a particular problem: newly-produced equipment for detecting radiation was recording a faint but constant signal, making it impossible to detect radiation below a certain threshold, limiting its sensitivity. Nothing had changed about their manufacturing process, so what was the culprit? The cause - it was later discovered - were early nuclear weapon tests. During these events, large quantities of radioactive material were released into the atmosphere. These radioactive particles quickly spread and dispersed slightly raising atmospheric background radiation. Steel production requires large amounts of oxygen. After the nuclear tests in 1945, it was no longer possible to extract it from the atmosphere without also capturing some radioactive particles. These detectors were not reading some unknown external signature, they were reading radioactivity from their own metal parts. A sudden event had changed something about the fundamental materials these devices were made out of, rendering them less accurate. Manufacturers started to seek out steels produced before the critical date of the first nuclear test, a material now known as low-background steel. Something similar is happening, right under our noses, with Large Language Models.]]></summary></entry><entry><title type="html">The Quantum Game</title><link href="https://the-quantumist.github.io/2023/07/19/the-quantum-game.html" rel="alternate" type="text/html" title="The Quantum Game" /><published>2023-07-19T00:00:00+00:00</published><updated>2023-07-19T00:00:00+00:00</updated><id>https://the-quantumist.github.io/2023/07/19/the-quantum-game</id><content type="html" xml:base="https://the-quantumist.github.io/2023/07/19/the-quantum-game.html"><![CDATA[<h1 id="a-handbook-for-understanding-quantum-math-in-articles">A handbook for understanding quantum math in articles</h1>
+
+<p>We all agree that quantum mechanics is weird and fascinating: it can teleport information, connect particles across space and time, and even speed up computations that would take centuries. Our mission at The Quantumist is to make this field a bit more accessible by walking you through the steps and reasonings in a colloquial manner. However, one cannot fully grasp what is going on under the hood without understanding some of the math. We believe math can be seen as a game, and the “rules” of this game determine the symbols you can write and how you can manupulate them. The purpose of this article is to serve as a cheat-sheet for the basic rules that apply when dealing with the math of quantum computing, and is intended for people that want to get their hands dirty. We will expand it in the future with additional notions and tricks we deem useful.</p>
+
+<h2 id="matrix-multiplication-refresher">Matrix multiplication refresher</h2>
+
+<p>This section is intended as a light refresh on one basic linear algebra concept that is fundamental for understanding the rest of the article. Feel free to skip it if you feel you already know these notions.</p>
+
+<p>Matrix multiplication is a basic operation useful to understand how quantum states evolve and how quantum gates combine with each other. To perform a matrix multiplication we of course need two matrices to multiply, \(A\) and \(B\), and we call the resulting matrix \(C\). We define \(A\) to be of generic size \((m \times n)\) (\(m\) rows, \(n\) columns), while \(B\) is of generic size \((k \times l)\). \(A\) and \(B\) can contain any kind of numbers, in our example we choose real numbers for simplicity (\(\mathbb{R}\)) but quantum computing utilizes complex values (\(\mathbb{C}\)). For now, not much is lost in limiting ourselves to real numbers. Back to our matrices, the size we choose for them is important, as we can only perform a matrix product \(A \cdot B\) if the inner dimensions of the product match. In other words, we can only multiply matrices of size \((m \times{\color{red}n})\) and \(({\color{red}k} \times l)\) if \(\color{red}{n = k}\).</p>
+
+<p>Now, let’s see how we can actually compute the matrix product. The generic element \(c_{ij}\) of \(C\) in row \(i\) and column \(j\) is computed as the scalar product of the \(i\)-th row of \(A\) with the \(j\)-th column of \(B\). This is also a mnemonic trick: “To compute the element in the \(\color{red}\text{third row}\), \(\color{blue}\text{second column}\) of \(C\), you must use the \(\color{red}\text{third row}\) of \(A\) and the \(\color{blue}\text{second column}\) of \(B\)”.</p>
+
+\[A \cdot B =
+\begin{bmatrix}
+    a_{11} &amp; \ldots &amp; a_{1n} \\
+    \vdots &amp; \ddots &amp; \vdots \\
+	a_{m1} &amp; \ldots &amp; a_{mn} \\
+\end{bmatrix} \cdot
+\begin{bmatrix}
+    b_{11} &amp; \ldots &amp; b_{1l} \\
+    \vdots &amp; \ddots &amp; \vdots \\
+	b_{k1} &amp; \ldots &amp; b_{kl} \\
+\end{bmatrix} =
+\begin{bmatrix}
+    c_{11} &amp; \ldots &amp; c_{1l} \\
+    \vdots &amp; \ddots &amp; \vdots \\
+	c_{m1} &amp; \ldots &amp; c_{ml} \\
+\end{bmatrix} = C\]
+
+\[c_{ij} \mathrel{\vcenter{:}}= \sum_{x=0}^{n} a_{ix} \cdot b_{jx}\]
+
+<p>As an example, let’s take a look at the following, with \(m = n = k = 3\) and \(l = 2\), in particular let’s show how to obtain element \(\color[rgb]{0.7,0,0.7}c_{32}\):</p>
+
+\[A \cdot B =
+\begin{bmatrix}
+    1 &amp; 3 &amp; 1 \\
+    4 &amp; 3 &amp; 1 \\
+	\color{red}2 &amp; \color{red}1 &amp; \color{red}2 \\
+\end{bmatrix} \cdot
+\begin{bmatrix}
+    1 &amp; \color{blue}0 \\
+    4 &amp; \color{blue}1 \\
+	3 &amp; \color{blue}3 \\
+\end{bmatrix} =
+\begin{bmatrix}
+    16 &amp; 6 \\
+    19 &amp; 6 \\
+	12 &amp; \color[rgb]{0.7,0,0.7}7 \\
+\end{bmatrix} = C\]
+
+\[c_{32} = {\color{red}2} \cdot {\color{blue}0} + {\color{red}1} \cdot {\color{blue}1} + {\color{red}2} \cdot {\color{blue}3} = {\color[rgb]{0.7,0,0.7}7}\]
+
+<p>Note that \(n = k\) was important in order to have vectors of the same length in the computation for \(c_{ij}\).</p>
+
+<h2 id="matrix-notation">Matrix notation</h2>
+
+<h3 id="a-recap-of-quantum-gates">A recap of quantum gates</h3>
+<p>Just as classical computers have logical gates to manipulate information, quantum computers have quantum gates. They serve the purpose of manipulating quantum states - effectively changing the shape of the probability distribution - in order to express some logical function. All quantum gates - and all quantum operators at large - act in a linear fashion. This means we can represent them in a matrix form. Moreover, every generic gate \(U\) is <em>unitary</em>, meaning it preserves the total probability sum of the state to \(1\) (\(U^{\dagger}U = UU^{\dagger} = I\)). All quantum gates are also <em>reversible</em>, meaning that the input can be unambiguously reconstructed from its output. By contrast, a classical XOR gate is irreversible since its output \(0\) can be obtained by both \(11\) and \(00\). Here is a table summarizing the main single and multi-qubit quantum gates:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gate</th>
+      <th>Symbol</th>
+      <th>Matrix form</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Identity</td>
+      <td>\(I\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1\end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>Pauli-X</td>
+      <td>\(X\)</td>
+      <td>\(\begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0\end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>Pauli-Y</td>
+      <td>\(Y\)</td>
+      <td>\(\begin{bmatrix} 0 &amp; -i \\ i &amp; 0\end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>Pauli-Z</td>
+      <td>\(Z\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1\end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>Hadamard</td>
+      <td>\(H\)</td>
+      <td>\(\frac{1}{\sqrt{2}}\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1\end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>\(\varphi\) Phase Shift</td>
+      <td>\(P(\varphi)\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{i\varphi}\end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>CNOT</td>
+      <td>\(\text{CNOT}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>SWAP</td>
+      <td>\(\text{SWAP}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>Controlled-Z</td>
+      <td>\(CZ\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; -1 \end{bmatrix}\)</td>
+    </tr>
+    <tr>
+      <td>Toffoli</td>
+      <td>\(CCX\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \end{bmatrix}\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="applying-quantum-gates-in-matrix-form">Applying quantum gates in matrix form</h3>
+<p>The result of applying a quantum gate to a state can be calculated simply as a matrix multiplication of the gate with the state. The effect of a gate can be easily understood once one visualizes the problem using linear algebra. To this regard, we recommend an excellent and intuitive explanation of these concepts: 3Blue1Brown’s <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of linear algebra</a>.</p>
+
+<p>An intuition coming from linear algebra is that gates in matrix formulation are a map to where the base states end up. Let’s take a look at the following example with a Pauli-Y gate on the \(\ket{0} = [1, 0]^T\) state:</p>
+
+\[Y\ket{0} =
+\begin{bmatrix} 
+	\color{red}0 &amp; -i \\ 
+	\color{red}i &amp; 0
+\end{bmatrix}
+\begin{bmatrix} 
+	1 \\ 
+	0
+\end{bmatrix} =
+\begin{bmatrix} 
+	\color{red}0 \\ 
+	\color{red}i
+\end{bmatrix}\]
+
+<p>Observe how the final output corresponds to the \(\color{red}\text{first column of } Y\). This is trivial, since state \(\ket{0}\) had a single \(1\) in the first position. This, however, is a very useful detail to notice, as it’s valid for gates and states of any size. Moreover, if your state is not a pure state (e.g. not \(\ket{0}\) or \(\ket{1}\)), you can still compute the output as a sum of base states. The values of the state tells you “how much” of every column to use for composing your state. For example, if we apply the Pauly-Y gate to the superposed state \(\ket{+} = \frac{1}{\sqrt{2}}[1, 1]^T\), we obtain:</p>
+
+\[Y\ket{+} =
+\begin{bmatrix} 
+	\color{red}0 &amp; \color{blue}-i \\ 
+	\color{red}i &amp; \color{blue}0
+\end{bmatrix}
+\begin{bmatrix} 
+	1 \\ 
+	1
+\end{bmatrix}\frac{1}{\sqrt{2}} =
+\frac{1}{\sqrt{2}}
+\begin{bmatrix} 
+	\color{red}0 \\ 
+	\color{red}i
+\end{bmatrix} +
+\frac{1}{\sqrt{2}}
+\begin{bmatrix} 
+	\color{blue}-i \\ 
+	\color{blue}0
+\end{bmatrix} =
+\frac{1}{\sqrt{2}}
+\begin{bmatrix} 
+	\color[rgb]{0.7,0,0.7}-i \\ 
+	\color[rgb]{0.7,0,0.7}i
+\end{bmatrix}\]
+
+<p>Let’s make a final example with a CNOT gate applied to a larger, 2-qubit state:</p>
+
+\[\text{CNOT}(\ket{00} + \ket{11}) = 
+\begin{bmatrix} 
+	1 &amp; 0 &amp; 0 &amp; 0 \\ 
+	0 &amp; 1 &amp; 0 &amp; 0 \\ 
+	0 &amp; 0 &amp; 0 &amp; 1 \\ 
+	0 &amp; 0 &amp; 1 &amp; 0 
+\end{bmatrix} 
+\begin{pmatrix} 
+	\begin{bmatrix} 
+	1 \\ 
+	0 \\ 
+	0 \\ 
+	0 
+	\end{bmatrix} + 
+		\begin{bmatrix} 
+	0 \\ 
+	0 \\ 
+	0 \\ 
+	1 
+	\end{bmatrix}
+\end{pmatrix} =
+\begin{bmatrix} 
+	1 \\ 
+	0 \\ 
+	0 \\ 
+	0 
+\end{bmatrix} + 
+\begin{bmatrix} 
+	0 \\ 
+	0 \\ 
+	1 \\ 
+	0 
+\end{bmatrix} =
+\ket{00} + \ket{10}\]
+
+<h2 id="dirac-notation">Dirac notation</h2>
+
+<h3 id="quantum-states-in-dirac-notation">Quantum states in Dirac notation</h3>
+
+<p>Doing the math in matrix notation can get out of hand very quickly. Let’s take the case of a qubit system made of three \(\ket{0}\) states. We represent this in matrix notation as a tensor product of three 2-dimensional vectors:</p>
+
+\[\ket{0} \otimes \ket{0} \otimes \ket{0} = 
+    \begin{bmatrix} 
+        1 \\ 0 
+    \end{bmatrix} \otimes
+    \begin{bmatrix} 
+        1 \\ 0 
+    \end{bmatrix} \otimes
+	\begin{bmatrix} 
+        1 \\ 0 
+    \end{bmatrix}	=
+    \begin{bmatrix} 
+        1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+\end{bmatrix}^T\]
+
+<p>As you can see, this notation is very cumbersome, especially when dealing with large qubit systems whose vector size grows exponentially. For this reason, quantum scientists developed a shorthand form - Dirac notation - that concisely represents the constituent qubits of a system. In this notation, the 3-qubit system seen before is written as \(\ket{000}\). Much more compact! Another reason for wanting to work in Dirac notation is that quantum gates often operate on a small part of the whole set of qubits, so it’s useful to represent them as separate systems.</p>
+
+<p>There is more! Scientists came up with many different ways of shortening and re-writing the notation while meaning the same thing. 
+Here is a quick reference of alternative ways you can use to refer to a quantum system (in this case we take \(\ket{000}\) as an example, but it works with any other multiqubit state). Remember, these are all different ways of writing the same \(\ket{000} = [1, 0, 0, 0, 0, 0, 0, 0]^T\) state:</p>
+
+<ul>
+  <li>\(\ket{0} \otimes \ket{0} \otimes \ket{0}\): Mathematical definition of stacking together multiple qubits in the same ket.</li>
+  <li>\(\ket{0} \ket{0} \ket{0}\): Shorthand for the Kronecker product.</li>
+  <li>\(\ket{0} \ket{00}\): The way qubits are split in different kets can be moved around.</li>
+  <li>\(\ket{0}^{\otimes 3}\): Three concatenated \(\ket{0}\) states.</li>
+</ul>
+
+<p>Let’s now take a different case. Suppose that we want to write a <em>full</em> superposition of all states in an \(n\)-qubit system. It would look somewhat like \((\ket{00\ldots0} + \cdots + \ket{11\ldots1})/\sqrt{n}\), which is again very long. A shorthand way to represent the same state is the following:</p>
+
+\[\frac{1}{\sqrt{n}}\sum_{x \in \{0,1\}^n}\ket{x}\]
+
+<p>For example, the 2-qubit superposition \((\ket{00} + \ket{01} + \ket{10} + \ket{11})/2\) becomes \(\frac{1}{2}\sum_{x \in \{0,1\}^2}\ket{x}\). This notation often pops up when dealing with quantum algorithms.</p>
+
+<h3 id="quantum-gates-in-dirac-notation">Quantum gates in Dirac notation</h3>
+<p>When dealing with quantum computations, you may deal with long and cumbersome operations that cannot be further reduced. A way of speeding up your calculations is to work directly in Dirac notation. To do so, we first need to lay down some rules to make sure we are playing the game correctly.</p>
+
+<h4 id="rule-of-behaviours">Rule of behaviours</h4>
+<p>All gates act in easy to describe ways. The outcome of passing a superposition through a gate can be obtained by applying the gate separately on each basis state and summing the results. Moreover, you can deduce this behavior by looking at the columns of the matrix form of the gate, in the same way we did for the matrix prodct. Let’s take a look at an example that shows how to transition from matrix notation to the Dirac one.</p>
+
+<p>Let’s consider gate \(H\) applied on \(\ket{+} = (\ket{0} + \ket{1})/\sqrt{2}\):
+\(H\ket{+} =
+\begin{bmatrix} 
+	\color{red}1 &amp; \color{blue}1 \\ 
+	\color{red}1 &amp; \color{blue}-1
+\end{bmatrix} \frac{1}{\sqrt{2}}
+\begin{bmatrix} 
+	1 \\ 
+	1
+\end{bmatrix}\frac{1}{\sqrt{2}} =
+(H\ket{0} + H\ket{1})/\sqrt{2}\)
+Remember how all kets actually represent column vectors? We use that same rule to convert back from vectors to ket, and rewrite the application of \(H\) in a different way. Now, we can read the columns of H (in \(\color{red}red\) and \(\color{blue}blue\)) to understand how they will change the states they’re applied to:</p>
+
+\[(H\ket{0} + H\ket{1})/\sqrt{2} =
+({\color{red}\ket{0} + \ket{1}} + {\color{blue}\ket{0} - \ket{1}})/2 =
+\ket{0}\]
+
+<p>Indeed, the first column of \(H\) is \([1,1]^T/\sqrt{2}\) and \(\ket{0}\) is transformed in a state with the same meaning: \(\ket{0} + \ket{1} = [1,1]^T/\sqrt{2}\).</p>
+
+<p>Here is a table summarizing the behaviours of the main gates:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gate</th>
+      <th>Symbol</th>
+      <th>Mapping</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Identity</td>
+      <td>\(I\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{0}\) <br /> \(\ket{1} \longrightarrow \ket{1}\)</td>
+      <td>Does nothing</td>
+    </tr>
+    <tr>
+      <td>Pauli-X</td>
+      <td>\(X\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{1}\) <br /> \(\ket{1} \longrightarrow \ket{0}\)</td>
+      <td>Quantum NOT. Turns \(0\) to \(1\) and viceversa</td>
+    </tr>
+    <tr>
+      <td>Pauli-Y</td>
+      <td>\(Y\)</td>
+      <td>\(\ket{0} \longrightarrow i\ket{1}\) \(\ket{1} \longrightarrow -i\ket{0}\)</td>
+      <td>Similar to \(X\), but multiplies by \(i\) or \(-i\)</td>
+    </tr>
+    <tr>
+      <td>Pauli-Z</td>
+      <td>\(Z\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{0}\) \(\ket{1} \longrightarrow -\ket{1}\)</td>
+      <td>Similar to \(I\), but flips the sign of nonzero inputs</td>
+    </tr>
+    <tr>
+      <td>Hadamard</td>
+      <td>\(H\)</td>
+      <td>\(\ket{0} \longrightarrow (\ket{0} + \ket{1})/\sqrt{2}\) \(\ket{1} \longrightarrow (\ket{0} - \ket{1})/\sqrt{2}\)</td>
+      <td>Creates a superposition</td>
+    </tr>
+    <tr>
+      <td>\(\varphi\) Phase Shift</td>
+      <td>\(P(\varphi)\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{0}\) \(\ket{1} \longrightarrow e^{i\varphi}\ket{1}\)</td>
+      <td>Shifts \(\ket{1}\) inputs by a specific phase</td>
+    </tr>
+    <tr>
+      <td>CNOT</td>
+      <td>\(\text{CNOT}\)</td>
+      <td>\(\ket{00} \longrightarrow \ket{00}\) \(\ket{01} \longrightarrow \ket{01}\) \(\ket{10} \longrightarrow \ket{11}\) \(\ket{11} \longrightarrow \ket{10}\)</td>
+      <td>If the first qubit is \(1\), it flips the second qubit</td>
+    </tr>
+    <tr>
+      <td>SWAP</td>
+      <td>\(\text{SWAP}\)</td>
+      <td>\(\ket{00} \longrightarrow \ket{00}\) \(\ket{01} \longrightarrow \ket{10}\) \(\ket{10} \longrightarrow \ket{01}\) \(\ket{11} \longrightarrow \ket{11}\)</td>
+      <td>Swaps the two qubits</td>
+    </tr>
+    <tr>
+      <td>Controlled-Z</td>
+      <td>\(CZ\)</td>
+      <td>\(\ket{00} \longrightarrow \ket{00}\) \(\ket{01} \longrightarrow \ket{01}\) \(\ket{10} \longrightarrow \ket{10}\) \(\ket{11} \longrightarrow -\ket{11}\)</td>
+      <td>Flips the sign of the target qubit if both qubits are in the \(1\) state</td>
+    </tr>
+    <tr>
+      <td>Toffoli</td>
+      <td>\(CCX\)</td>
+      <td>\(\ket{010} \longrightarrow \ket{010}\) \(\ket{110} \longrightarrow \ket{111}\) \(\ket{111} \longrightarrow \ket{110}\)</td>
+      <td>Flips the third qubit if both first and second qubits are \(1\) (only some examples shown)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="rule-of-parallel-gates">Rule of parallel gates</h4>
+<p>Gates stack like states do. In other words, one can represent three parallel \(H\) gates  with a tensor product: \(H \otimes H \otimes H\). A shorthand notation is \(H^{\otimes 3}\). The resulting gate can handle 3-qubit systems, so \(H^{\otimes 3} \ket{000}\) would be a valid operation.</p>
+
+<h4 id="rule-of-matching-sizes">Rule of matching sizes</h4>
+<p>In Dirac notation, a gate is always applied to the state to its right. States and the gates we pass them through must match in size. For example, the operation \(\text{CNOT} \ket{000}\) doesn’t make sense because the \(\text{CNOT}\) gate expects 2 qubits as input, while we are feeding it a 3-qubit system. A correct way to apply a \(\text{CNOT}\) to only the first two qubits would be \((\text{CNOT} \otimes I) \ket{000}\) or \(\text{CNOT}\ket{00} \ket{0}\).</p>
+
+<p>Let’s now see how one can use these shortcuts to work through the math without using the lengthy matrix notation.</p>
+
+<h4 id="example-1---single-qubit-gates-in-dirac-notation">Example 1 - Single-qubit gates in Dirac notation</h4>
+<p>Write the result of applying the gate \(YHX\) on state \(\ket{1}\)</p>
+
+\[\begin{align*}
+	YHX \ket{1} &amp;= YH {\color{red}\ket{0}} &amp; &amp;\text{Start by flipping the qubit} \\
+	&amp;= Y \color{red}(\ket{0} + \ket{1})/\sqrt{2} &amp; &amp;\text{Use H to build the superposition} \\
+	&amp;= ({\color{red}Y} \ket{0} + {\color{red}Y} \ket{1})/\sqrt{2} &amp; &amp;\text{Carry the Y inside } \\
+	&amp;= ( {\color{red}i\ket{1}} {\color{red}-i\ket{0}})/\sqrt{2} &amp; &amp;\text{Apply Y separately to each basis state} \\
+\end{align*}\]
+
+<h4 id="example-2---multiple-qubit-gates-in-dirac-notation">Example 2 - Multiple-qubit gates in Dirac notation</h4>
+<p>Write the result of applying the gate \((X^{\otimes 3}) (X \otimes \text{CNOT}) (\text{CNOT} \otimes I)\) on state \(\ket{101}\)</p>
+
+<p>\(\begin{align*}
+	(X^{\otimes 3}) (X \otimes \text{CNOT}) (\text{CNOT} \otimes I) \ket{101} &amp;= (X^{\otimes 3}) (X \otimes \text{CNOT}) \ket{1{\color{red}1}1} &amp; &amp;\text{Controlled flip operation on second qubit} \\
+	&amp;= (X^{\otimes 3}) \ket{\phantom{}{\color{red}0}1{\color{red}0}} &amp; &amp;\text{Flip of first qubit and controlled flip of third qubit} \\
+	&amp;= \ket{\color{red}101} &amp; &amp;\text{Flip of all qubits} \\
+\end{align*}\)
+Notice how the gate used in the example respects the rule of matching sizes, and notice how by applying the rule of behaviours we solved an otherwise very large matrix multiplication in just a few steps!</p>
+
+<h3 id="reading-quantum-circuits">Reading quantum circuits</h3>
+
+<p>Oftentimes, papers and books present quantum algorithms using the circuit that describes them. Going from the diagram to the math and viceversa can be confusing, therefore we summarized here some useful rules to keep in mind in order to correctly interpret the notation.</p>
+
+<ul>
+  <li>Gates in series correspond to consecutive matrix products</li>
+</ul>
+
+\[\ket{s'} = T X H \ket{s}\]
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/fig-series-qcircuit-output-1.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 1: Three gates in series on a single qubit.</i>
+</div>
+</div>
+
+<ul>
+  <li>Gates in parallel correspond to a tensor product</li>
+</ul>
+
+\[\ket{s'} = (\text{CNOT} \otimes I)(I \otimes \text{CNOT})(H \otimes X \otimes I) \ket{s}\]
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/fig-parallel-qcircuit-output-1.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 2: Multiple gates in parallel on 3 qubits. Note how <b>s</b> is actually a 3-qubit system.</i>
+</div>
+</div>
+
+<p>As a sanity check, remember that the formula you obtain must satisfy the “rule of matching sizes”. Translating a diagram and finding something like \(CNOT \ket{0}\) is a sign that something went wrong.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>If you got this far, congratulations! This article is very dense and tries to summarise many concepts in the simplest way possible. Don’t worry if you couldn’t memorize all notions, it’s normal to feel this way. The purpose of this article is to be a quick guide to return to in case you stumble upon some confusing math later on. Remember to come back from time to time, as new tips and tricks may be added later on. See you soon!</p>
+
+<h2 id="quantum-gate-summary-table">Quantum gate summary table</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gate</th>
+      <th>Symbol</th>
+      <th>Mapping</th>
+      <th>Matrix form</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Identity</td>
+      <td>\(I\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{0}\) <br /> \(\ket{1} \longrightarrow \ket{1}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1\end{bmatrix}\)</td>
+      <td>Does nothing</td>
+    </tr>
+    <tr>
+      <td>Pauli-X</td>
+      <td>\(X\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{1}\) <br /> \(\ket{1} \longrightarrow \ket{0}\)</td>
+      <td>\(\begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0\end{bmatrix}\)</td>
+      <td>Quantum NOT. Turns \(0\) to \(1\) and viceversa</td>
+    </tr>
+    <tr>
+      <td>Pauli-Y</td>
+      <td>\(Y\)</td>
+      <td>\(\ket{0} \longrightarrow i\ket{1}\) \(\ket{1} \longrightarrow -i\ket{0}\)</td>
+      <td>\(\begin{bmatrix} 0 &amp; -i \\ i &amp; 0\end{bmatrix}\)</td>
+      <td>Similar to \(X\), but multiplies by \(i\) or \(-i\)</td>
+    </tr>
+    <tr>
+      <td>Pauli-Z</td>
+      <td>\(Z\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{0}\) \(\ket{1} \longrightarrow -\ket{1}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1\end{bmatrix}\)</td>
+      <td>Similar to \(I\), but flips the sign of nonzero inputs</td>
+    </tr>
+    <tr>
+      <td>Hadamard</td>
+      <td>\(H\)</td>
+      <td>\(\ket{0} \longrightarrow (\ket{0} + \ket{1})/\sqrt{2}\) \(\ket{1} \longrightarrow (\ket{0} - \ket{1})/\sqrt{2}\)</td>
+      <td>\(\frac{1}{\sqrt{2}}\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1\end{bmatrix}\)</td>
+      <td>Creates a superposition</td>
+    </tr>
+    <tr>
+      <td>\(\varphi\) Phase Shift</td>
+      <td>\(P(\varphi)\)</td>
+      <td>\(\ket{0} \longrightarrow \ket{0}\) \(\ket{1} \longrightarrow e^{i\varphi}\ket{1}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; e^{i\varphi}\end{bmatrix}\)</td>
+      <td>Shifts \(\ket{1}\) inputs by a specific phase</td>
+    </tr>
+    <tr>
+      <td>CNOT</td>
+      <td>\(\text{CNOT}\)</td>
+      <td>\(\ket{00} \longrightarrow \ket{00}\) \(\ket{01} \longrightarrow \ket{01}\) \(\ket{10} \longrightarrow \ket{11}\) \(\ket{11} \longrightarrow \ket{10}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 0 \end{bmatrix}\)</td>
+      <td>If the first qubit is \(1\), it flips the second qubit</td>
+    </tr>
+    <tr>
+      <td>SWAP</td>
+      <td>\(\text{SWAP}\)</td>
+      <td>\(\ket{00} \longrightarrow \ket{00}\) \(\ket{01} \longrightarrow \ket{10}\) \(\ket{10} \longrightarrow \ket{01}\) \(\ket{11} \longrightarrow \ket{11}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{bmatrix}\)</td>
+      <td>Swaps the two qubits</td>
+    </tr>
+    <tr>
+      <td>Controlled-Z</td>
+      <td>\(CZ\)</td>
+      <td>\(\ket{00} \longrightarrow \ket{00}\) \(\ket{01} \longrightarrow \ket{01}\) \(\ket{10} \longrightarrow \ket{10}\) \(\ket{11} \longrightarrow -\ket{11}\)</td>
+      <td>\(\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; -1 \end{bmatrix}\)</td>
+      <td>Flips the sign of the target qubit if both qubits are in the \(1\) state</td>
+    </tr>
+    <tr>
+      <td>Toffoli</td>
+      <td>\(CCX\)</td>
+      <td>\(\ket{010} \longrightarrow \ket{010}\) \(\ket{110} \longrightarrow \ket{111}\) \(\ket{111} \longrightarrow \ket{110}\)</td>
+      <td>(Omitted for readability)</td>
+      <td>Flips the third qubit if both first and second qubits are \(1\) (only some examples shown)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sources">Sources</h2>
+
+<p>Nielsen, M., &amp; Chuang, I. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press. doi:10.1017/CBO9780511976667</p>]]></content><author><name>Federico Tiblias, Gilberto Manunza</name></author><category term="Quantum Computing" /><category term="Linear Algebra" /><summary type="html"><![CDATA[A handbook for understanding quantum math in articles]]></summary></entry><entry><title type="html">Quantum Computing for Computer Engineers - Part 3</title><link href="https://the-quantumist.github.io/2023/05/14/quantum-computing-for-computer-engineers-part-3.html" rel="alternate" type="text/html" title="Quantum Computing for Computer Engineers - Part 3" /><published>2023-05-14T00:00:00+00:00</published><updated>2023-05-14T00:00:00+00:00</updated><id>https://the-quantumist.github.io/2023/05/14/quantum-computing-for-computer-engineers-part-3</id><content type="html" xml:base="https://the-quantumist.github.io/2023/05/14/quantum-computing-for-computer-engineers-part-3.html"><![CDATA[<h1 id="so-far-yet-so-close">So far, yet so close</h1>
+
+<p>Imagine you have two bowling balls, one is black and one is white. You put these balls in two boxes, mix them up, and now you can’t tell which box contains which ball. Let’s suppose you gift one box to your friend who is about to leave for a very long journey to Proxima Centauri. After some years you crack open the remaining box and  voila - you find the black ball inside. In this exact moment you automagically know that in the other box, which now is in proxima centauri, there is a white ball (assuming it did not get destroyed by aliens on its dangerous journey). How incredible is that? Probably your answer is “not much”, it’s something quite normal. Is there any quantum weirdness going on? Definitely not, it’s just good ol’ correlation at work. We can safely say that the result of the measurements are \(100\%\) correlated but there is nothing we cannot explain with normal probability.</p>
+
+<p>Let’s take the previous experiment up a notch, shall we? This time, instead of bowling balls, we’re using two coins. But wait, there’s a twist - we’re making these coins spin with so much force that they’ll keep spinning indefinitely (or until we ruin the fun by touching them). While the coins are still spinning, we toss them into two boxes. But that’s not all. We also run these boxes through a special machine that can link the coins in a mysterious way while they’re still spinning. This link ensures that if we open one box, touch the coin inside and measure which side it lands (say, heads), the other coin - when we touch it - will land on the opposite side (tails), and vice versa. Sounds impossible, right?</p>
+
+<p>Here’s what would happen if we repeat the previous experiment: if we ship one box to Proxima Centauri and, after some time, we measure the other box’s coin, we’ll instantly know which side the coin in the faraway box has landed on. This, my friend, is what we call <em>entanglement</em>. The difference between the bowling balls and the coins is that with the balls, we already knew which one was black and which one was white. But with the coins, we didn’t know ahead of time which side they would land, only that they would be opposite of each other. Since a coin can have a \(50/50\) chance of landing on heads or tails, while still spinning it can be considered to be in both states at the same time - just like a qubit is in a superposition of two states.</p>
+
+<p>Does this mean that the coins are communicating instantly no matter their distance, even faster than the speed of light? Well, yes and no. In a certain sense the coins are linked in a way that is non-dependent on their relative position: if one lands on the head the other will land on the tail. This is the so called <em>non-locality principle</em>. Unfortunately, we cannot use this phenomenon to communicate instantly: our friend on Proxima Centauri won’t know the result of our measurement if we don’t tell them in a conventional way, nor will they know whether or not our coin is still spinning. The only thing they’ll know is that if they measure head, you will measure tail and viceversa, just like with the balls. So no ways to “hack” the universe, unfortunately the no free lunch theorem is still valid. Does this mean entanglement is useless? Definitely not! On the contrary, it is a very important phenomenon with many uses. Through this article we are going to better define how it works, walk you through the math, and show you one possible application.</p>
+
+<h2 id="bell-states">Bell States</h2>
+<p>Let’s now introduce the concept of entanglement in a more formal way through the so called <em>Bell states</em>. Bell states are four specific two-qubit systems that cannot be created by simply combining two one-qubit systems. How can we go about creating one then?</p>
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/fig-bell-qcircuit-output-1.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 1: The Bell states circuit.</i>
+</div>
+</div>
+
+<p>Pretty confusing, right? Let’s do the math step by step. First of all remember that the Hadamard gate can be described in this form:</p>
+
+\[H = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1 &amp; 1 \\
+    1 &amp; -1
+    \end{bmatrix}\]
+
+<p>But, wait a second! The Hadamard gate is a single qubit gate, how can we apply it to a qubit system? We should find a way to build a two-qubit gate that applies the Hadamard just to the first without toching the second. We can see the situation as having two single qubit gates acting in parallel, the Hadamard (on the first) and the identity gate (on the second). As we saw in another <a href="https://the-quantumist.github.io/2023/01/31/quantum-computing-for-computer-engineers-part-2.html">previous article</a>, we can go from a single qubit system to a multiple qubit system by applying the Kronecker product. The good news is that we can do the same to combine two single qubit gates in parallel into one multiple qubit gate:</p>
+
+\[H \otimes I = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1 &amp; 1 \\
+    1 &amp; -1
+    \end{bmatrix} \otimes \begin{bmatrix}
+    1 &amp; 0 \\
+    0 &amp; 1
+    \end{bmatrix} = \frac{1}{\sqrt{2}}
+\begin{bmatrix}
+    1&amp;0&amp;1&amp;0\\
+    0&amp;1&amp;0&amp;1\\
+    1&amp;0&amp;-1&amp;0\\
+    0&amp;1&amp;0&amp;-1
+\end{bmatrix}\]
+
+<p>This is a general rule that becomes very handy to put gates in parallel. Now let’s suppose our \(\ket{\psi}\) system is the state \(\ket{00}\), meaning that we are \(100\%\) sure both qubits are zero. In formulas, \(\ket{\psi} = [1, 0, 0, 0]^T\). Then, we can apply the \(H\) to the first qubit, thus obtaining:</p>
+
+\[\ket{\psi_H} = 
+(H \otimes I)\ket{\psi} =
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+    1&amp;0&amp;1&amp;0\\
+    0&amp;1&amp;0&amp;1\\
+    1&amp;0&amp;-1&amp;0\\
+    0&amp;1&amp;0&amp;-1
+\end{bmatrix}
+\begin{bmatrix}
+  1 \\
+  0 \\
+  0 \\
+  0 \\
+\end{bmatrix} = 
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+  1 \\
+  0 \\
+  1 \\
+  0 \\
+\end{bmatrix}\]
+
+<p>Now let’s take the full state and apply the CNOT gate \(U_{CN}\), this time in <em>series</em>, so instead of the Kronecker product we use a matrix multiplication:</p>
+
+\[\begin{align*}
+\ket{\psi_{HCN}} &amp; = \frac{1}{\sqrt{2}} U_{CN}\ket{\psi_H}
+= \begin{bmatrix}
+    1&amp;0&amp;0&amp;0\\
+    0&amp;1&amp;0&amp;0\\
+    0&amp;0&amp;0&amp;1\\
+    0&amp;0&amp;1&amp;0
+\end{bmatrix}
+\frac{1}{\sqrt{2}}
+\begin{bmatrix}
+  1 \\
+  0 \\
+  1 \\
+  0 \\
+\end{bmatrix}  \\
+&amp; = \frac{1}{\sqrt{2}}
+\begin{bmatrix}
+  1 \\
+  0 \\
+  0 \\
+  1 \\
+\end{bmatrix} =
+\frac{\ket{00}+\ket{11}}{\sqrt{2}}
+\end{align*}\]
+
+<p>That’s one of the Bell States, the others are obtained in an analogous way by applying the same gates \(U_{CN} (H \otimes I)\) to the other <em>basis states</em>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Input (\(\ket{\psi}\))</th>
+      <th>Output (\(\ket{\psi_{HCN}}\))</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(\ket{00}\)</td>
+      <td>\(\frac{\ket{00}+\ket{11}}{\sqrt{2}}\)</td>
+    </tr>
+    <tr>
+      <td>\(\ket{01}\)</td>
+      <td>\(\frac{\ket{01}+\ket{10}}{\sqrt{2}}\)</td>
+    </tr>
+    <tr>
+      <td>\(\ket{10}\)</td>
+      <td>\(\frac{\ket{00}-\ket{11}}{\sqrt{2}}\)</td>
+    </tr>
+    <tr>
+      <td>\(\ket{11}\)</td>
+      <td>\(\frac{\ket{01}-\ket{11}}{\sqrt{2}}\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Pretty complicated, right? We strongly believe that the best way to learn this sort of things in quantum computing is to sit down and do the math. We recommend taking your time to redo the calculations with pen and paper for the other states to check for yourself that everything is right. Of course this process becomes cumbersome as we consider larger systems, but it’s worth the effort for small examples, to get the concept right.</p>
+
+<p>A question you may have is: “Ok, we have these fancy states, but why are they so important?”
+Let’s take a closer look at the state \(\frac{\ket{00}+\ket{11}}{\sqrt{2}}\). It describes a two qubit system which can be observed with \(50\%\) probability in state \(00\) and with \(50\%\) in state \(11\). This means that if we measure independently the first qubit and observe \(0\), then also the second qubit will be \(0\), viceversa if we measure \(1\) we will also observe \(1\) on the second qubit. These qubits are therefore linked: we don’t know their states a priori, but we know that when measured they will yield the same result! As explained in the introduction, this relationship holds no matter how far these two qubits are in space or time, and it’s due to what quantum physicists call <strong>non-locality principle</strong>. With a bunch of linear algebra we were able to describe mathematically such a deep and mysterious concept that regulates the universe, how cool is that?</p>
+
+<p>Things become even more interesting if we try to split the two qubits. Given</p>
+
+\[\ket{\psi_{HCN}} =
+	\begin{bmatrix}
+	\psi_{00}  \\
+	\psi_{01}  \\
+	\psi_{10}  \\
+	\psi_{11}  \\
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+	1  \\
+	0  \\
+	0  \\
+	1  \\
+	\end{bmatrix}\frac{1}{\sqrt{2}}\]
+
+<p>Can we find the coefficients \(\psi_{ij}\) such that we are able to write the system as the Kronecker product of the two qubits? As we already described in the previous article, we can’t. This means we cannot obtain a Bell state by simply considering two separate qubits as one system. Instead, we necessarily need to construct them via quantum gates. The result is two objects that cannot be described on their own. This impossibility explains the difference between bowling balls and spinning coins, it’s something classical probability simply cannot describe and that’s the reason we look at the quantum formalism instead.</p>
+
+<h2 id="superdense-coding">Superdense coding</h2>
+
+<p>Now, let’s use the concept we just learnt to do something concrete! We will show that by using the Bell states we can send two bits of information by transmitting just one qubit. The setup looks like this: we have two friends, Alice and Bob, that want to share some information over a “quantum wire”. They each receive beforehand one qubit of the entangled Bell state \(\ket{\psi_0} = \frac{\ket{00} + \ket{11}}{\sqrt{2}}\). Alice then modifies her qubit in a smart way to codify two classical bits, obtaining \(\ket{\psi_1}\), and sends it to Bob. Bob compares his qubit with the one he has received from Alice and immediately recognizes the two bits Alice wanted him to have, obtaining the state \(\ket{\psi_2}\). It’s true that Bob received two qubits overall, but the information did not yet exist when he received the first one. We can see superdense coding as a way of sharing an “information credit” ahead of time, and then spend it at the right moment by sending half the qubits we normally would.
+An example of a quantum circuit able to do this kind of magic is shown in Figure 2, where \(q_{Alice}\) and \(q_{Bob}\) both start in the state \(\ket{00}\) (they are both \(0\) with \(100\%\) probability).</p>
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/fig-superdense-qcircuit-output-1.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 2: The superdense coding circuit.</i>
+</div>
+</div>
+
+<p>Let’s do the math step by step. The first part is easy: we start from the state \(\ket{00}\) and we apply the Bell circuit to obtain \(\frac{\ket{00} + \ket{11}}{\sqrt{2}}\). Now, suppose Alice wants to send two classical bits \(01\) to Bob. To do that, she applies a \(Z\) gate to her qubit; this is a single qubit gate that can be written as:</p>
+
+\[Z=\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; -1 \\
+\end{bmatrix}\]
+
+<p>Remember we are in a two qubit system so to apply the \(Z\) gate to the fist qubit means to apply the identity gate to the second in parallel. We can do this even though the two qubits are separated, this is simply a way of representing operations on the system as a whole and does not depend on the position in space of its constituent qubits. The resulting gate can be derived with the Kronecker product:</p>
+
+\[Z\otimes I = \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; -1 \\
+\end{bmatrix} \otimes \begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1 \\
+\end{bmatrix} =
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; -1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; -1 \\
+\end{bmatrix}\]
+
+<p>Now let’s pass the system through the gate:</p>
+
+\[\begin{align*}
+	(Z\otimes I) \ket{\psi_0} &amp;=
+	\begin{bmatrix}
+	1 &amp; 0 &amp; 0 &amp; 0 \\
+	0 &amp; 1 &amp; 0 &amp; 0 \\
+	0 &amp; 0 &amp; -1 &amp; 0 \\
+	0 &amp; 0 &amp; 0 &amp; -1 \\
+	\end{bmatrix}\frac{1}{\sqrt{2}}\begin{bmatrix}
+	1  \\
+	0  \\
+	0  \\
+	1  \\
+	\end{bmatrix}\\ 
+    &amp; = 
+	\frac{1}{\sqrt{2}}\begin{bmatrix}
+	1  \\
+	0  \\
+	0  \\
+	-1  \\
+	\end{bmatrix} = \frac{\ket{00} - \ket{11}}{\sqrt{2}}\\
+    &amp; =
+	\ket{\psi_1}
+\end{align*}\]
+
+<p>Note how Alice, by modifying her qubit, is able to modify the whole system. Now she sends her qubit to Bob. All that is left to do for Bob is to extract the information encoded by Alice and measure the system. In other words Bob needs to go from this Bell state \(\ket{\psi_1}\) to one where the outcome is certain. How can he do that? Well, rember from the first article that all quantum gates are reversible? Bob can apply the inverse of the gates used in the previous section to revert the entanglement while keeping the effect of the \(Z\) gate used by Alice, thus going back to the basis state. This means a CNOT on both qubits followed by an Hadamard gate on the first one.</p>
+
+<p>After the CNOT, we get:</p>
+
+\[U_{CN} \ket{\psi_1} = \begin{bmatrix}
+    1&amp;0&amp;0&amp;0\\
+    0&amp;1&amp;0&amp;0\\
+    0&amp;0&amp;0&amp;1\\
+    0&amp;0&amp;1&amp;0
+\end{bmatrix}\frac{1}{\sqrt{2}}\begin{bmatrix}
+	1  \\
+	0  \\
+	0  \\
+	-1  \\
+	\end{bmatrix} =
+  \frac{1}{\sqrt{2}}\begin{bmatrix}
+	1  \\
+	0  \\
+	-1  \\
+	0  \\
+	\end{bmatrix}\]
+
+<p>And afther the Hadamard on the first qubit (same gate used in the first section):</p>
+
+\[\begin{align*}
+\ket{\psi_2} &amp;=
+ (H \otimes I) \frac{1}{\sqrt{2}}\begin{bmatrix}
+	1  \\
+	0  \\
+	-1  \\
+	0  \\
+	\end{bmatrix}
+\frac{1}{\sqrt{2}} =
+\frac{1}{2} 
+\begin{bmatrix}
+    1&amp;0&amp;1&amp;0\\
+    0&amp;1&amp;0&amp;1\\
+    1&amp;0&amp;-1&amp;0\\
+    0&amp;1&amp;0&amp;-1
+\end{bmatrix}
+\begin{bmatrix}
+	1  \\
+	0  \\
+	-1  \\
+	0  \\
+\end{bmatrix} \\ 
+&amp; =
+\frac{1}{2} 
+\begin{bmatrix}
+	0  \\
+	0  \\
+	2  \\
+	0  \\
+	\end{bmatrix}=
+\begin{bmatrix}
+	0  \\
+	0  \\
+	1  \\
+	0  \\
+	\end{bmatrix}
+= \ket{01}
+\end{align*}\]
+
+<p>Now Bob can measure the system and get \(01\) with probability \(100\%\). Alice was thus able to send two bits of information, just by sending one qubit! That’s superdense coding.</p>
+
+<p>Now you would ask: “Ok, this works for \(01\). What about the other values?”. Alice can encode the 4 different values \(00\), \(01\), \(10\), \(11\) simply by changing the initial gate that is applied to her entangled qubit. This results in a different Bell state for every choice, that Bob can then revert back to a clear answer. Here is a table showing all the combinations:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value to encode</th>
+      <th>Gate to apply to first qubit</th>
+      <th>Resulting state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>\(00\)</td>
+      <td>\(I=\begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1\end{bmatrix}\)</td>
+      <td>\(\frac{\ket{00} + \ket{11}}{2}\)</td>
+    </tr>
+    <tr>
+      <td>\(01\)</td>
+      <td>\(Z=\begin{bmatrix}1 &amp; 0 \\ 0 &amp; -1\end{bmatrix}\)</td>
+      <td>\(\frac{\ket{00} - \ket{11}}{2}\)</td>
+    </tr>
+    <tr>
+      <td>\(10\)</td>
+      <td>\(X=\begin{bmatrix}0 &amp; 1 \\ 1 &amp; 0\end{bmatrix}\)</td>
+      <td>\(\frac{\ket{10} + \ket{01}}{2}\)</td>
+    </tr>
+    <tr>
+      <td>\(11\)</td>
+      <td>\(ZX=\begin{bmatrix}0 &amp; 1 \\ -1 &amp; 0\end{bmatrix}\)</td>
+      <td>\(\frac{\ket{01} - \ket{10}}{2}\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where \(X\) (or Pauli-\(X\)) is simply the one-qubit NOT gate.</p>
+
+<p>Given the different Bell states, Bob can then decode the values in the same way we saw for the particular case of \(01\). We suggest you do the math for the other three possibilities, to be sure Bob decodes the right value.</p>
+
+<p>A final remark you may have is: “This notation is rather cumbersome, can we use the \(H\) gate directly on a qubit instead of using \(H \otimes I\)”?. The answer is no, and the reason was already given earlier: since the two qubits are entangled, they cannot be expressed as a tensor product of two separate systems. All operations on an entangled pair must be mathematically computed on the full system even if they involve only one of the qubits. This gives another hint as why quantum computers are powerful: we can use the properties of entanglement without having to represent a matrix of exponential size. All we need are the smaller gates.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Quite a lot of stuff we saw in this episode! Here we introduced one of the most important concepts in quantum physics, and we showed with a fair bit of math how to apply it for quantum computing. The superdense coding example is one of many applications of entanglement in quantum theory. Another weird and fascinating thing we can do with it is teleporting qubits! We are eager to cover more on the topic in following articles.</p>
+
+<h2 id="sources">Sources</h2>
+
+<p>Nielsen, M., &amp; Chuang, I. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press. doi:10.1017/CBO9780511976667</p>]]></content><author><name>Gilberto Manunza, Federico Tiblias</name></author><category term="Quantum Computing" /><category term="Linear Algebra" /><summary type="html"><![CDATA[So far, yet so close]]></summary></entry><entry><title type="html">Quantum Computing for Computer Engineers - Part 2</title><link href="https://the-quantumist.github.io/2023/01/31/quantum-computing-for-computer-engineers-part-2.html" rel="alternate" type="text/html" title="Quantum Computing for Computer Engineers - Part 2" /><published>2023-01-31T00:00:00+00:00</published><updated>2023-01-31T00:00:00+00:00</updated><id>https://the-quantumist.github.io/2023/01/31/quantum-computing-for-computer-engineers-part-2</id><content type="html" xml:base="https://the-quantumist.github.io/2023/01/31/quantum-computing-for-computer-engineers-part-2.html"><![CDATA[<h1 id="where-are-the-other-432">Where are the other 432?</h1>
+
+<p>The story so far: quantum computers run on strange little things called qubits, we can write them as \(2\)D vectors, and the values inside these vectors represent the probabilities of observing them in state \(\ket{0}\) or \(\ket{1}\).</p>
+
+\[\ket{\psi} = \alpha\ket{0} + \beta\ket{1} = 
+    \alpha\begin{bmatrix} 1 \\ 0 \end{bmatrix} + \beta\begin{bmatrix} 0 \\ 1 \end{bmatrix} = \begin{bmatrix} \alpha \\ \beta \end{bmatrix}\]
+
+\[P(0) = |\alpha|^2\qquad
+    P(1) = |\beta|^2\]
+
+<p>We have also seen how a quantum gate can be applied to a qubit to produce all kinds of funky results.</p>
+
+\[H\ket{0}
+    =
+    \frac{\ket{0} + \ket{1}}{\sqrt{2}}\qquad
+    H\ket{1}
+    =
+    \frac{\ket{0} - \ket{1}}{\sqrt{2}}\]
+
+<p>One question you may have at this point is: “We have only seen one qubit, while IBM’s largest computer has \(433\). Where are the other \(432\)?”. To answer this question we must think even weirder than before, brace yourself.</p>
+
+<p><em>Note:</em> The original title of this article was “Where are the other \(126\)?” since the largest quantum processor ever built by IBM, ‘Eagle’, had that many qubits. Funnily enough, during its writing IBM unveiled ‘Osprey’, a new processor almost quadrupling the amount of qubits ‘Eagle’ had, taking the record from \(127\) to \(433\). We reported this fact as an additional testament of how fast this field is evolving.</p>
+
+<h2 id="two-qubits">Two Qubits</h2>
+<p>If we read the value of two classical bits we can find them in four possible configurations: \(00\), \(01\), \(10\), \(11\). We would like to find something similar in our quantum counterpart. More precisely, we need a way to represent four probabilities, each one relating to one basis state. The natural way of doing so is with a 4D vector. As before, we want our 4 probabilities to sum to 1.</p>
+
+\[\ket{\psi} = 
+    \begin{bmatrix} 
+        \psi_{00} \\ \psi_{01} \\ \psi_{10} \\ \psi_{11}
+    \end{bmatrix} \qquad
+    P(ij) = |\psi_{ij}|^2 \qquad 
+	\sum_{i,j} |\psi_{ij}|^2 = 1\]
+
+<p>As before, we want our 4 probabilities to sum to \(1\): \(\sum_{i,j} |\psi_{ij}|^2 = 1\).
+We learned how to write a \(2\)-qubit system, but it’s still unclear how you can go from separate qubits to a system of multiple qubits. In other words, how can we “merge” two \(2\)D vectors into a \(4\)D one? You can’t simply stack it, the rules of the game are a bit different.</p>
+
+<p>Let’s introduce a new friend, the <em>tensor product</em>, also called <em>Kronecker product</em> (<em>Note:</em> Kronecker and tensor products are actually two different guys, but they almost look alike. In this article we won’t go into the difference but keep it in mind if you meet them elsewhere). The <em>Kronecker product</em> takes two vectors, matrices or also simple numbers and multiplies every number in the first “object” with every number in the second one. This works between matrices and vectors of all sizes! For example, with vectors of length 3 and 2 respectively:</p>
+
+\[\ket{A} \otimes \ket{B} = 
+    \begin{bmatrix} 
+        a_1 \\ a_2 \\ a_3 
+    \end{bmatrix} \otimes
+    \begin{bmatrix} 
+        b_1 \\ b_2
+    \end{bmatrix} =
+    \begin{bmatrix} 
+        a_1 \cdot b_1 \\ a_1 \cdot b_2 \\ 
+        a_2 \cdot b_1 \\ a_2 \cdot b_2 \\
+        a_3 \cdot b_1 \\ a_3 \cdot b_2 \\
+\end{bmatrix}\]
+
+<p>As a side note, this also works between matrices and vectors of all sizes!</p>
+
+<p>Back to our quantum problem, the way we build a \(2\) qubit system is by applying the <em>Kronecker product</em> to two qubits. Assuming \(\ket{\psi}\) and \(\ket{\phi}\) are qubits:</p>
+
+\[\ket{\psi} \otimes \ket{\phi} = 
+    \begin{bmatrix} 
+        \psi_0 \\ \psi_1 
+    \end{bmatrix} \otimes
+    \begin{bmatrix} 
+        \phi_0 \\ \phi_1
+    \end{bmatrix} =
+    \begin{bmatrix} 
+        \psi_0 \cdot \phi_0 \\ \psi_0 \cdot \phi_1 \\ 
+        \psi_1 \cdot \phi_0 \\ \psi_1 \cdot \phi_1 \\
+\end{bmatrix}\]
+
+<p>Why do we care about this? Because it tells us how different qubit probabilities interact with each other to build larger systems. And the way they do is with simple products (for now…). What about \(n\) qubits? Since \(n\) classical bits can assume \(2^n\) different configurations, we expect \(n\) qubits to have \(2^n\) different base states. To represent these many states we need a long state vector, \(2^n\) elements long to be precise. If you’re still not convinced, try computing the <em>Kronecker product</em> between more than two qubits.</p>
+
+<h2 id="multiple-qubit-gates">Multiple-qubit gates</h2>
+<p>To manipulate big qubit systems we need big quantum gates. And they are defined in pretty much the same way as before. For an \(n\) qubit system, we can write them as Hermitian matrices of size \(2^n\times2^n\).</p>
+
+<p>The most common quantum gate with more than a qubit is the CNOT gate, or Controlled Not. This gate takes two qubits as input: the first is the control one, the second is the target. The behaviour is quite simple: if the control qubit is set to \(\ket{0}\) then nothing happens to the other qubit, viceversa if the control qubit is set to \(\ket{1}\), then the target qubit is flipped. Mathematically:</p>
+
+\[\ket{00}\to\ket{00}\]
+
+\[\ket{01}\to\ket{01}\]
+
+\[\ket{10}\to\ket{11}\]
+
+\[\ket{11}\to\ket{10}\]
+
+<p>Note how this is a generalization of the XOR gate: the control bit and the target bit are XOR-ed and the result is stored in the target bit.
+We can easily describe the CNOT gate in matricial form:</p>
+
+\[U_{CN}=\begin{bmatrix}
+    1&amp;0&amp;0&amp;0\\
+    0&amp;1&amp;0&amp;0\\
+    0&amp;0&amp;0&amp;1\\
+    0&amp;0&amp;1&amp;0
+    \end{bmatrix}\]
+
+<p>You may have heard all classical computers are made of NAND gates. It has been shown that by cleverly combining NAND gates you can create all the other logical gates. It is thus cheaper, simpler and more efficient to create many NAND gates and wire them up correctly rather than building many different gates. The CNOT gate is the equivalent of the quantum world. It can be proven that all multiple qubit gates can be composed from a CNOT and single qubit gates, hence it is the perfect candidate for building quantum computers.</p>
+
+<p>One question you may have at this point is: “why quantum gates need to return the same number of values as their input?”. After all, classical gates don’t have this requirement. A simple XOR gate takes two inputs but return only one. So why is it that the CNOT can’t also return simply its second qubit? It turns out the answer is deeply rooted in how quantum mechanics works. I could mathematically write a non-square matrix returning just the qubit I need (that would be quite simple), but it would not be possible to physically create such gate. Quantum computing is largely separated from its physical meaning, a qubit can be an electron, a photon an ion (or even a cat) and we wouldn’t care too much since the behaviour would be the same. But in order to respect the axioms of quantum mechanics, we must force this constraint. There is, however, one (sort of) exception, and this is <em>measurement</em>.</p>
+
+<p>Measurement has quite a deep meaning in quantum computing, that’s the process of forcing a qubit to <em>take a decision</em>. If we have a two qubit system we can measure separately the two composing qubits. For example, given a qubit in the form:</p>
+
+\[\ket{\psi}=\psi_{00}\ket{00} + \psi_{01}\ket{01} + \psi_{10}\ket{10} + \psi_{11}\ket{11}\]
+
+<p>a measurement of the first qubit would give \(0\) with probability 
+\(|\psi_{00}|^2+|\psi_{01}|^2\) (all the states in which the first qubit is zero). As a consequence the states \(\ket{10}\) and \(\ket{11}\) would have probability \(0\), but since all probabilities must sum to one we will be left with the state after measurement:</p>
+
+\[\ket{\psi}=\frac{\psi_{00}\ket{00} + \psi_{01}\ket{01}}{\sqrt{|\psi_{00}|^2+|\psi_{01}|^2}}\]
+
+<p>which in mathematical terms consists of normalizing what’s remaining so that everything keeps summing up to one. Normalization of the remaining qubits always happens after you measure one of them. Measurement is a fundamental concept one needs to understand to really grasp quantum mechanics. However, for now, we prefer not to overload you with information. We’ll give a detailed explanation of measurements in a future article.</p>
+
+<h2 id="a-spooky-phenomenon">A spooky phenomenon</h2>
+<p>On a similar note let’s imagine having this 2-qubit system:</p>
+
+\[\ket{\psi} =
+	\begin{bmatrix}
+	\psi_{00}  \\
+	\psi_{01}  \\
+	\psi_{10}  \\
+	\psi_{11}  \\
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+	0  \\
+	1  \\
+	1  \\
+	0  \\
+	\end{bmatrix}\frac{1}{\sqrt{2}}\]
+
+<p>Are you able to find the correct coefficients \(\alpha_0, \alpha_1, \beta_0, \beta_1\) of two separate qubits to build it with a tensor product?</p>
+
+\[\ket{\psi} = 
+    \begin{bmatrix} 
+        \alpha_0 \\ \alpha_1 
+    \end{bmatrix} \otimes
+    \begin{bmatrix} 
+        \beta_0 \\ \beta_1
+    \end{bmatrix} 
+	=
+	\begin{bmatrix}
+	0  \\
+	1  \\
+	1  \\
+	0  \\
+	\end{bmatrix}\frac{1}{\sqrt{2}}\]
+
+<p><em>Spoiler</em>: you can’t. 
+An even stranger thing: what happens if you read the first qubit and observe a \(0\)? You must be either in configuration \(\ket{00}\) or \(\ket{01}\), but the probability of the first configuration is \(0\)… The opposite happens if you instead observe a \(1\) on the first qubit.
+By collapsing the wave function of the first qubit we instantly reduced the probability of some state on the other qubit to \(0\). It means that also the second unmeasured qubit collapsed without us ever touching it! This behavior is a manifestation of an important quantum phenomenon with deep implications and it’s known as <em>entanglement</em>. While this deserves an article on its own we can say in short that when two qubits are entagled they are strongly correlated: measuring the first implies a measuremnent of the second and viceversa. This correlation is very strong and no matter how far we separate these qubits (remember qubits can be atoms, ions, cats), they will always be entangled. This can lead to very weird stuff, like teleportation. There are fundamental differences between entanglement and correlation, so remember that this analogy is not mathematically accurate.</p>
+
+<p><em>Note:</em> <a href="https://physics.stackexchange.com/questions/561382/what-exactly-is-the-difference-between-entanglement-and-correlations">Here</a> you can find more about the difference between correlation and entanglement.</p>
+
+<h2 id="quantum-circuits">Quantum Circuits</h2>
+<p>Now that we have talked about multiple qubit systems, we can start to imagine that as the complexity grows, it becomes exponentially difficult to represent every operation in matricial form. For this reason we introduce here the concept of quantum circuits. This is a concise way to represent one or multiple operations on a qubit system, and is also a clever way of devising new quantum algorithms. For example, in the figure below we can see the simplest quantum circuit for a 2-qubit system:</p>
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/fig-simple-qcircuit-output-1.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 1: A simple quantum circuit.</i>
+</div>
+</div>
+
+<p>In the diagram we have the two qubits \(q_0\) and \(q_1\) represented as two horizontal lines: these are the equivalent of wires in the quantum world and connect consecutive operations on that same qubit. These are not physical wires, but rather <em>logical ones</em>, they can represent the passing of time, or photons moving from one point to another. The point of plotting a circuit is that we can easily see where and how gates are applied. Let’s do this for a Hadamard:</p>
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/fig-hadamard-qcircuit-output-1.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 2: Hadamard gate applied to the first qubit.</i>
+</div>
+</div>
+
+<p>In this case, we apply the Hadamard gate to the first qubit without touching the second (if you don’t remember what this gate does, we already introduced it in a <a href="https://the-quantumist.github.io/2022/11/01/quantum-computing-for-computer-engineers-part-1.html">previous article</a>). Of course, we can do the same with the new shiny gate that we just learnt, the CNOT:</p>
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/fig-cnot-qcircuit-output-1.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 3: CNOT with first qubit as the control.</i>
+</div>
+</div>
+
+<p>Observe how this gate visually takes two wires as input and outputs two wires as output. The “dot” shape indicates that \(q_0\) is the controlling qubit, while the “plus” shape indicates that \(q_1\) is the controlled one. The next step is to combine multiple gates and create more complex circuits:</p>
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/fig-bell-qcircuit-output-1.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 4: A more complicated circuit.</i>
+</div>
+</div>
+
+<p>As an exercise, you can do the math yourself and show that this circuit can be used to create entangled states! Simply take any 2-qubit state and apply the matrix representing the circuit to it. As a hint, the matrix is \(U_{CN}(H \otimes I)\). Note how this time we apply the Kronecker product to matrices. Finally, we can represent the operation of measurement:</p>
+
+<div>
+<div style="display: flex;justify-content: center;">
+<img src="images/fig-measurement-qcircuit-output-1.png" />
+</div>
+<div style="display: flex;justify-content: center;">
+<i>Figure 5: Measuring the first qubit.</i>
+</div>
+</div>
+
+<p>we are measuring just the first qubit after the Hadamard and saving the output in a standard 1-bit register \(c\), denoted as a double wire.
+This notion of quantum circuits will become particularly useful in the future when we’ll introduce more complex applications and properties.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>That’s all for this second article about the basics of quantum computing, in the next ones we will focus deeper on the concepts of measurement and entaglement (that’s a lot of cool stuff). If you liked the article or you have any question and/or suggestion, feel free to leave a comment. Until next time!</p>
+
+<h2 id="sources">Sources</h2>
+
+<p>Nielsen, M., &amp; Chuang, I. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press. doi:10.1017/CBO9780511976667</p>]]></content><author><name>Federico Tiblias, Gilberto Manunza</name></author><category term="Quantum Computing" /><category term="Linear Algebra" /><summary type="html"><![CDATA[Where are the other 432?]]></summary></entry><entry><title type="html">Quantum Computing for Computer Engineers - Part 1</title><link href="https://the-quantumist.github.io/2022/11/01/quantum-computing-for-computer-engineers-part-1.html" rel="alternate" type="text/html" title="Quantum Computing for Computer Engineers - Part 1" /><published>2022-11-01T00:00:00+00:00</published><updated>2022-11-01T00:00:00+00:00</updated><id>https://the-quantumist.github.io/2022/11/01/quantum-computing-for-computer-engineers-part-1</id><content type="html" xml:base="https://the-quantumist.github.io/2022/11/01/quantum-computing-for-computer-engineers-part-1.html"><![CDATA[<h1 id="qubits-and-quantum-gates">Qubits and quantum gates</h1>
+
+<p>Here’s the thing about Quantum Computing: it is one of the most
+interesting and promising fields of research, but at the same time one
+of the most obscure. The idea of building a computer using the sometimes
+counter-intuitive laws of quantum mechanics is quite old, and since the
+80s people are developing a quantum computation theory. One of the first
+reasons why this could be relevant is the inherent difficulty of
+simulating quantum systems on classical computers (as pointed out by
+Feynman himself in 1982). Secondly, a computer built using the rules
+of quantum mechanics can, in theory, solve a particular set of problems
+way faster than a standard computer. For example, it could search an
+element in a generic vector in \(O(\sqrt{n})\)!</p>
+
+<p>Quantum computers are not only theoretical devices, they actually exist
+and have been built by companies in the quest of developing this new and
+completely different technology. Demonstrating that a quantum computer
+can solve a problem more efficiently than a standard computer, however,
+is not an easy task, this is the so called quantum supremacy problem. In a
+paper from 2019, Google announced that it had achieved for the first
+time quantum supremacy. Since then, papers were published showing how
+the results claimed by Google were beaten using new techniques to
+simulate quantum computers on standard supercomputers. Competition is
+fierce and the quest to find quantum algorithms able to outperform
+standard computers is still on.</p>
+
+<p>This article is the first of a series of posts in which we are going
+to introduce the basis of quantum computing theory,
+with some examples and a little bit of math. The article is
+meant for people with a general knowledge of linear algebra and computer
+science, but zero knowledge of quantum physics. Oftentimes, introductory
+explanations on quantum computing are either too basic, using
+simplifying metaphors that don’t really correspond to how things
+actually work, or too advanced, cluttering the reader with a
+mathematical overhead that is not really required to understand and use
+these concepts, at least at first. Our purpose is to bridge the divide
+between these two explanations, giving you a clear picture of these
+abstract concepts while reducing the math to an accessible amount.</p>
+
+<h2 id="the-qubit">The Qubit</h2>
+
+<p>Let’s start with the basics. In classical theory of computation, the
+basic element is the bit, it’s a simple object that can assume either
+value \(0\) or \(1\). Well, in quantum we have an analogous: the quantum bit
+or qubit for short. Just as the standard bit has two states: \(0\) and \(1\)
+a qubit can have two states: \(\ket{0}\) and \(\ket{1}\). We represent these
+simple states with 2-element vectors. The weird \(\ket{\cdot}\) notation
+is a short way of representing a vector and is called the <em>Dirac</em> notation. Our
+base states are thus:</p>
+
+\[\ket{0} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}\;\; 
+    \ket{1} = \begin{bmatrix} 0 \\ 1 \end{bmatrix}\]
+
+<p>The thingy about qubits is that they can be in states other than
+\(\ket{0}\) or \(\ket{1}\). In fact, they can be in <em>any</em> linear combinations of
+these states, also known as <em>superpositions</em>:</p>
+
+\[\ket{\psi} = \alpha\ket{0} + \beta\ket{1} = 
+    \alpha\begin{bmatrix} 1 \\ 0 \end{bmatrix} + \beta\begin{bmatrix} 0 \\ 1 \end{bmatrix} = \begin{bmatrix} \alpha \\ \beta \end{bmatrix}\]
+
+<p>where \(\alpha\) and \(\beta\) are two complex numbers. For now you can
+think of them as real numbers, you’ll see that not much is lost. In math
+terms, you can see a qubit as a vector in a 2-D space, where the
+special states \(\ket{0}\) and \(\ket{1}\) are the so called computational
+basis states.</p>
+
+<p>Pretty easy until now, right? Well it turns out that qubit have another
+relevant difference with their classical counterpart. When reading the
+value of a bit this can be in just two states: either \(0\) or \(1\). When
+we try to read a qubit (also called <em>measurement</em>) we find that we <em>can not</em> retrieve directly
+its values \(\alpha\) and \(\beta\), also in this case we only get either a
+\(0\) or \(1\). So where is the difference? While classical bits always
+exist in some definite state, qubits in superposition exist in multiple
+states <em>at the same time</em>. This is counter-intuitive and pretty far from what we observe
+in our daily lives. This does not mean that qubits are secretly in some
+state we don’t know until we take a look. This is an inherent property
+of nature: some things are not defined until they are measured. If we
+were to repeat a measurement multiple times we would observe that
+sometimes we land on \(0\) and sometimes we land on \(1\), with
+probabilities \(|\alpha|^2\) and \(|\beta|^2\) respectively. A qubit can be seen as a “list” of probabilities of its outcomes (more properly called <em>distribution</em>). Since probabilities sum to \(1\), we find that for all qubits:</p>
+
+\[|\alpha|^2+|\beta|^2=1\]
+
+<p>For example let’s consider the following qubits:</p>
+
+\[\ket{A} = 
+        \begin{bmatrix} 
+            \frac{1}{\sqrt{2}} \\[5pt]
+            -\frac{1}{\sqrt{2}} 
+        \end{bmatrix}
+    \longrightarrow \Big| \frac{1}{\sqrt{2}} \Big|^2 + \Big|-\frac{1}{\sqrt{2}}\Big|^2 = 1\]
+
+\[\ket{B} = 
+        \begin{bmatrix}
+        1 \\[5pt]
+        1 
+        \end{bmatrix} 
+    \longrightarrow 2 \neq 1\]
+
+<p>Notice how in the example shown above, \(\ket{A}\) is a valid qubit, while \(\ket{B}\) is not, since its values don’t sum to \(1\). Also observe how values inside state vectors can be negative and still produce valid probabilities (we are taking a squared norm, after all).</p>
+
+<p>Observe also how qubits can encode values that have an infinite number
+of decimal digits at no extra cost. If we keep qubits in superposition
+we have an infinite precision representation of numbers:</p>
+
+\[\ket{A} = 
+        \begin{bmatrix} 
+            \frac{1}{\sqrt{2}} \\[5pt]
+            -\frac{1}{\sqrt{2}} 
+        \end{bmatrix} =
+        \begin{bmatrix} 
+            0.7071... \\[5pt]
+            -0.7071... 
+        \end{bmatrix}\]
+
+<p>How great this is! But as soon as we measure a qubit, some part of it is
+lost. We go from a potentially infinite amount of information to a
+single bit. This means there is a sort of <em>hidden</em> information encoded somewhere,
+but we can see just a part of it. This information actually exists and
+we can perform computations with it (this is the whole point of quantum
+computing). In a nutshell, the goal of quantum computing is to find
+clever ways to extract this hidden information in the most efficient way
+possible.</p>
+
+<p>A useful analogy for understanding the qubit is the Schrödinger’s cat
+(if you don’t know about this thought experiment, more info can be found <a href="https://en.wikipedia.org/wiki/Schr%C3%B6dinger%27s_cat">here</a>). To
+recap what the experiment is about: let’s imagine to put a cat, a flask
+of poison and a source of radiation in a box. The source of radiation is
+an atom in a superposition of \(\ket{decayed}\) and \(\ket{not\,decayed}\).
+If a Geiger counter detects radioactivity it causes the release of
+poison, thus killing the cat. The point is that we don’t know when the
+Geiger counter will detect radioactivity (n.d.r. caused by a single atom
+decaying). So if we close the box we don’t know if the cat it’s still
+alive or dead. We can say that the cat is in a superposition of these
+states, being both alive and dead at the same time, like a qubit can
+be both \(\ket{0}\) and \(\ket{1}\). The point is that, when we eventually
+open the box, the cat can not be in a mixture of the two states, it will
+be alive or dead, exactly how the qubit, when measured, can just be \(0\) or \(1\). Why does this state collapse happens? Nobody knows, but this is how
+things work, you know.</p>
+
+<p>Back to our math, we said that the values \(|\alpha|^2+|\beta|^2=1\), so a
+qubit can be seen as a unit vector in a two dimensional complex space,
+thus we may rewrite the qubit as:</p>
+
+\[\ket{\psi}=e^{i\gamma}\left(\cos\frac{\theta}{2}\ket{0}+e^{i\varphi}\sin\frac{\theta}{2}\ket{1}\right)\]
+
+<p>with \(\theta\), \(\varphi\), \(\gamma\) real numbers. Actually we can ignore the
+factor \(e^{i\gamma}\) (the reason why is outside the scope of this
+article), thus rewriting the qubit as:</p>
+
+\[\ket{\psi}=\cos\frac{\theta}{2}\ket{0}+e^{i\varphi}\sin\frac{\theta}{2}\ket{1}\]
+
+<p>We can see the qubit as a point in the 3-D unit sphere, also called
+Bloch sphere, this visualization is often used in quantum computing,
+even if it can not be generalized to multiple qubit systems.</p>
+
+<div id="fig-bloch">
+
+<div style="display: flex;justify-content: center;">
+
+<a href="https://en.wikipedia.org/wiki/Bloch_sphere" width="80%"><img src="images/Bloch_sphere.svg.png" /></a>
+
+</div>
+
+<div style="display: flex;justify-content: center;">
+<i>Figure 1: A Bloch sphere</i>
+</div>
+</div>
+
+<h2 id="quantum-gates">Quantum Gates</h2>
+
+<p>We have our qubit, the basic quantum computational element, now we
+should introduce how to use it. Simple! We can use quantum gates: just
+as classical computers have logical gates to manipulate information,
+quantum computers have quantum gates. Let’s keep it simple for now and
+consider just single bit gates. In classical computation theory the only
+interesting single bit gate is the NOT, providing the mapping \(0\to1\),
+\(1\to0\). There are also three other single bit gates: Identity, Set to
+\(0\) and Set to \(1\), but they are not that interesting.</p>
+
+<p>Can we imagine an analogous quantum NOT gate? This would be a gate that
+inverts the state \(\ket{0}\) to \(\ket{1}\) and vice versa. The problem
+here is that specifying an action on the states \(\ket{0}\) and \(\ket{1}\)
+does not tell anything about what happens to the superposition of these
+two states. The quantum NOT on the other hand acts linearly, this means
+that it takes a qubit in the state:</p>
+
+\[\ket{\psi} = \alpha\ket{0} + \beta\ket{1}\]
+
+<p>and outputs the qubit:</p>
+
+\[\ket{\psi} = \beta\ket{0} + \alpha\ket{1}\]
+
+<p>Actually all quantum gates, not just the NOT, act in a linear fashion.
+This is a general property of quantum operators. Since a quantum gate
+acts linearly, we can represent it in a matrix form. For example, here
+is the quantum NOT we described earlier:</p>
+
+\[X = \begin{bmatrix}
+0 &amp; 1\\
+1 &amp; 0
+\end{bmatrix}\]
+
+<p>This is how the gate operates in matricial form:</p>
+
+\[X\begin{bmatrix}\alpha \\ \beta\end{bmatrix}
+    =
+    \begin{bmatrix}
+0 &amp; 1\\
+1 &amp; 0
+\end{bmatrix}
+\begin{bmatrix}\alpha \\ \beta\end{bmatrix}
+=
+\begin{bmatrix}\beta \\ \alpha\end{bmatrix}\]
+
+<p>That’s quite interesting: we can describe quantum gates by matrices, but
+what are the property that these matrices should have? Well, for every
+qubit with parameters \(\alpha\) and \(\beta\) we have the constraint
+\(|\alpha|^2+|\beta|^2=1\), this means that if we let our valid qubit go
+through a quantum gate then we want a valid qubit on the way out, with
+squared values that sum to 1. With a little bit of linear algebra it is
+possible to show that for a matrix \(U\) to be a valid quantum gate it
+should have the property: \(U^{\dagger}U=I\). \(U^{\dagger}\) is the <em>adjoint</em>
+matrix of \(U\) (also called <em>Hermitian transpose</em>), obtained by taking the transpose of \(U\) and complex
+conjugating it. This constraint is called Hermiticity, and any matrix
+that satisfies it is a valid quantum gate! This means that there many
+non-trivial single bit quantum gates.</p>
+
+<p>For example a very important gate is the Hadamard gate:</p>
+
+\[H = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1 &amp; 1 \\
+    1 &amp; -1
+    \end{bmatrix}\]
+
+<p>This gate sends states in superposition. Observe below how, by feeding
+it a base state \(\ket{0}\) or \(\ket{1}\), we are left with a superposition
+with a \(50\%\) chance of landing on \(0\) and a \(50\%\) chance of landing on
+\(1\).</p>
+
+\[H\begin{bmatrix}1 \\ 0\end{bmatrix}
+    =
+    \begin{bmatrix}\frac{1}{\sqrt{2}} \\[5pt] \frac{1}{\sqrt{2}}\end{bmatrix}\]
+
+\[H\begin{bmatrix}0 \\ 1\end{bmatrix}
+    =
+    \begin{bmatrix}\frac{1}{\sqrt{2}} \\[5pt] -\frac{1}{\sqrt{2}}\end{bmatrix}\]
+
+\[\Big| \frac{1}{\sqrt{2}} \Big|^2 = 
+    \Big|-\frac{1}{\sqrt{2}}\Big|^2 = 0.5\]
+
+<p>A natural question to ask is: why the \(-1\) in the bottom right corner of
+the matrix? This is because an important property of quantum gates
+(derived from the Hermiticity constraint) is that all gates should be
+reversible, i.e. if we let the output qubit go through the same gate we will
+end up with the original one. This is actually an important property of
+quantum phisics that emerges in multiple situations.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>In this introductory article we gave you a taste of quantum computing
+and we introduced some fundamental concepts and notation. Probably
+you’ll be quite confused at this point. Don’t worry, it’s normal.
+Quantum computing is hard to grasp at first, but if you decide to delve
+deeper into it, things will make more and more sense. There are many
+reasons for doing so: one can be personal interest, another can be the
+fact that investing time in learning these concepts can be very
+strategic. Many large companies have invested millions into this field,
+and breakthroughs happen by the day. Whatever your reason, if you want
+to go deeper we published on our blog a part 2 of this article. Here
+we kept the math simple and intuitive, while in part 2 we focus more
+on the math formalism and introduce some other important concepts. Don’t
+be scared: if you have a general knowledge of computer science and
+linear algebra you’ll be able to follow it!</p>
+
+<h2 id="sources">Sources</h2>
+
+<p>Nielsen, M., &amp; Chuang, I. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press. doi:10.1017/CBO9780511976667</p>]]></content><author><name>Gilberto Manunza, Federico Tiblias</name></author><category term="Quantum Computing" /><category term="Linear Algebra" /><summary type="html"><![CDATA[Qubits and quantum gates]]></summary></entry></feed>

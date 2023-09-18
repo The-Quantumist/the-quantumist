@@ -1,0 +1,1028 @@
+<!-- Mathjax Support -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      packages: ['base', 'ams', 'braket', 'color']
+    },
+    loader: {
+      load: ['ui/menu', '[tex]/ams', '[tex]/braket', '[tex]/color']
+    }
+  };
+  </script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Quantum Computing for Computer Engineers - Part 1 - The Quantumist</title>
+<meta name="description" content="Qubits and quantum gates">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Quantumist">
+<meta property="og:title" content="Quantum Computing for Computer Engineers - Part 1">
+<meta property="og:url" content="https://the-quantumist.github.io/2022/11/01/quantum-computing-for-computer-engineers-part-1.html">
+
+
+  <meta property="og:description" content="Qubits and quantum gates">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-11-01T00:00:00+00:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://the-quantumist.github.io/2022/11/01/quantum-computing-for-computer-engineers-part-1.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "The Quantumist",
+      "url": "https://the-quantumist.github.io/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Quantumist Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single_multiple_authors">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          The Quantumist
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/tags">Posts by tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/posts">Posts by date</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+    <h3>Authors</h3>
+    
+
+
+
+
+  
+  <div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+    
+      <div class="author__avatar">
+        <a href="https://the-quantumist.github.io/">
+          <img src="/assets/images/authors-icons/gilberto-manunza.png" alt="Gilberto Manunza" itemprop="image" class="u-photo">
+        </a>
+      </div>
+    
+
+    <div class="author__content">
+      <h3 class="author__name p-name" itemprop="name">
+        <a class="u-url" rel="me" href="https://the-quantumist.github.io/" itemprop="url">Gilberto Manunza</a>
+      </h3>
+    </div>
+
+    <div class="author__urls-wrapper">
+      <button class="btn btn--inverse">Follow</button>
+      <ul class="author__urls social-icons">
+        
+
+        
+          
+            
+              <li><a href="mailto:gilbertomanunza@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+            
+          
+            
+              <li><a href="https://github.com/gialbo" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github-square" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+            
+          
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- 
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li> -->
+
+      </ul>
+    </div>
+  </div>
+
+
+  
+  <div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+    
+      <div class="author__avatar">
+        <a href="https://the-quantumist.github.io/">
+          <img src="/assets/images/authors-icons/federico-tiblias.jpeg" alt="Federico Tiblias" itemprop="image" class="u-photo">
+        </a>
+      </div>
+    
+
+    <div class="author__content">
+      <h3 class="author__name p-name" itemprop="name">
+        <a class="u-url" rel="me" href="https://the-quantumist.github.io/" itemprop="url">Federico Tiblias</a>
+      </h3>
+    </div>
+
+    <div class="author__urls-wrapper">
+      <button class="btn btn--inverse">Follow</button>
+      <ul class="author__urls social-icons">
+        
+
+        
+          
+            
+              <li><a href="mailto:f.tiblias@live.it" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+            
+          
+            
+              <li><a href="https://github.com/akatief" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github-square" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+            
+          
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- 
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li> -->
+
+      </ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Quantum Computing for Computer Engineers - Part 1">
+    <meta itemprop="description" content="Qubits and quantum gates">
+    <meta itemprop="datePublished" content="2022-11-01T00:00:00+00:00">
+    
+
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://the-quantumist.github.io/2022/11/01/quantum-computing-for-computer-engineers-part-1.html" class="u-url" itemprop="url">Quantum Computing for Computer Engineers - Part 1
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#qubits-and-quantum-gates">Qubits and quantum gates</a><ul><li><a href="#the-qubit">The Qubit</a></li><li><a href="#quantum-gates">Quantum Gates</a></li><li><a href="#conclusion">Conclusion</a></li><li><a href="#sources">Sources</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="qubits-and-quantum-gates">Qubits and quantum gates</h1>
+
+<p>Here’s the thing about Quantum Computing: it is one of the most
+interesting and promising fields of research, but at the same time one
+of the most obscure. The idea of building a computer using the sometimes
+counter-intuitive laws of quantum mechanics is quite old, and since the
+80s people are developing a quantum computation theory. One of the first
+reasons why this could be relevant is the inherent difficulty of
+simulating quantum systems on classical computers (as pointed out by
+Feynman himself in 1982). Secondly, a computer built using the rules
+of quantum mechanics can, in theory, solve a particular set of problems
+way faster than a standard computer. For example, it could search an
+element in a generic vector in \(O(\sqrt{n})\)!</p>
+
+<p>Quantum computers are not only theoretical devices, they actually exist
+and have been built by companies in the quest of developing this new and
+completely different technology. Demonstrating that a quantum computer
+can solve a problem more efficiently than a standard computer, however,
+is not an easy task, this is the so called quantum supremacy problem. In a
+paper from 2019, Google announced that it had achieved for the first
+time quantum supremacy. Since then, papers were published showing how
+the results claimed by Google were beaten using new techniques to
+simulate quantum computers on standard supercomputers. Competition is
+fierce and the quest to find quantum algorithms able to outperform
+standard computers is still on.</p>
+
+<p>This article is the first of a series of posts in which we are going
+to introduce the basis of quantum computing theory,
+with some examples and a little bit of math. The article is
+meant for people with a general knowledge of linear algebra and computer
+science, but zero knowledge of quantum physics. Oftentimes, introductory
+explanations on quantum computing are either too basic, using
+simplifying metaphors that don’t really correspond to how things
+actually work, or too advanced, cluttering the reader with a
+mathematical overhead that is not really required to understand and use
+these concepts, at least at first. Our purpose is to bridge the divide
+between these two explanations, giving you a clear picture of these
+abstract concepts while reducing the math to an accessible amount.</p>
+
+<h2 id="the-qubit">The Qubit</h2>
+
+<p>Let’s start with the basics. In classical theory of computation, the
+basic element is the bit, it’s a simple object that can assume either
+value \(0\) or \(1\). Well, in quantum we have an analogous: the quantum bit
+or qubit for short. Just as the standard bit has two states: \(0\) and \(1\)
+a qubit can have two states: \(\ket{0}\) and \(\ket{1}\). We represent these
+simple states with 2-element vectors. The weird \(\ket{\cdot}\) notation
+is a short way of representing a vector and is called the <em>Dirac</em> notation. Our
+base states are thus:</p>
+
+\[\ket{0} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}\;\; 
+    \ket{1} = \begin{bmatrix} 0 \\ 1 \end{bmatrix}\]
+
+<p>The thingy about qubits is that they can be in states other than
+\(\ket{0}\) or \(\ket{1}\). In fact, they can be in <em>any</em> linear combinations of
+these states, also known as <em>superpositions</em>:</p>
+
+\[\ket{\psi} = \alpha\ket{0} + \beta\ket{1} = 
+    \alpha\begin{bmatrix} 1 \\ 0 \end{bmatrix} + \beta\begin{bmatrix} 0 \\ 1 \end{bmatrix} = \begin{bmatrix} \alpha \\ \beta \end{bmatrix}\]
+
+<p>where \(\alpha\) and \(\beta\) are two complex numbers. For now you can
+think of them as real numbers, you’ll see that not much is lost. In math
+terms, you can see a qubit as a vector in a 2-D space, where the
+special states \(\ket{0}\) and \(\ket{1}\) are the so called computational
+basis states.</p>
+
+<p>Pretty easy until now, right? Well it turns out that qubit have another
+relevant difference with their classical counterpart. When reading the
+value of a bit this can be in just two states: either \(0\) or \(1\). When
+we try to read a qubit (also called <em>measurement</em>) we find that we <em>can not</em> retrieve directly
+its values \(\alpha\) and \(\beta\), also in this case we only get either a
+\(0\) or \(1\). So where is the difference? While classical bits always
+exist in some definite state, qubits in superposition exist in multiple
+states <em>at the same time</em>. This is counter-intuitive and pretty far from what we observe
+in our daily lives. This does not mean that qubits are secretly in some
+state we don’t know until we take a look. This is an inherent property
+of nature: some things are not defined until they are measured. If we
+were to repeat a measurement multiple times we would observe that
+sometimes we land on \(0\) and sometimes we land on \(1\), with
+probabilities \(|\alpha|^2\) and \(|\beta|^2\) respectively. A qubit can be seen as a “list” of probabilities of its outcomes (more properly called <em>distribution</em>). Since probabilities sum to \(1\), we find that for all qubits:</p>
+
+\[|\alpha|^2+|\beta|^2=1\]
+
+<p>For example let’s consider the following qubits:</p>
+
+\[\ket{A} = 
+        \begin{bmatrix} 
+            \frac{1}{\sqrt{2}} \\[5pt]
+            -\frac{1}{\sqrt{2}} 
+        \end{bmatrix}
+    \longrightarrow \Big| \frac{1}{\sqrt{2}} \Big|^2 + \Big|-\frac{1}{\sqrt{2}}\Big|^2 = 1\]
+
+\[\ket{B} = 
+        \begin{bmatrix}
+        1 \\[5pt]
+        1 
+        \end{bmatrix} 
+    \longrightarrow 2 \neq 1\]
+
+<p>Notice how in the example shown above, \(\ket{A}\) is a valid qubit, while \(\ket{B}\) is not, since its values don’t sum to \(1\). Also observe how values inside state vectors can be negative and still produce valid probabilities (we are taking a squared norm, after all).</p>
+
+<p>Observe also how qubits can encode values that have an infinite number
+of decimal digits at no extra cost. If we keep qubits in superposition
+we have an infinite precision representation of numbers:</p>
+
+\[\ket{A} = 
+        \begin{bmatrix} 
+            \frac{1}{\sqrt{2}} \\[5pt]
+            -\frac{1}{\sqrt{2}} 
+        \end{bmatrix} =
+        \begin{bmatrix} 
+            0.7071... \\[5pt]
+            -0.7071... 
+        \end{bmatrix}\]
+
+<p>How great this is! But as soon as we measure a qubit, some part of it is
+lost. We go from a potentially infinite amount of information to a
+single bit. This means there is a sort of <em>hidden</em> information encoded somewhere,
+but we can see just a part of it. This information actually exists and
+we can perform computations with it (this is the whole point of quantum
+computing). In a nutshell, the goal of quantum computing is to find
+clever ways to extract this hidden information in the most efficient way
+possible.</p>
+
+<p>A useful analogy for understanding the qubit is the Schrödinger’s cat
+(if you don’t know about this thought experiment, more info can be found <a href="https://en.wikipedia.org/wiki/Schr%C3%B6dinger%27s_cat">here</a>). To
+recap what the experiment is about: let’s imagine to put a cat, a flask
+of poison and a source of radiation in a box. The source of radiation is
+an atom in a superposition of \(\ket{decayed}\) and \(\ket{not\,decayed}\).
+If a Geiger counter detects radioactivity it causes the release of
+poison, thus killing the cat. The point is that we don’t know when the
+Geiger counter will detect radioactivity (n.d.r. caused by a single atom
+decaying). So if we close the box we don’t know if the cat it’s still
+alive or dead. We can say that the cat is in a superposition of these
+states, being both alive and dead at the same time, like a qubit can
+be both \(\ket{0}\) and \(\ket{1}\). The point is that, when we eventually
+open the box, the cat can not be in a mixture of the two states, it will
+be alive or dead, exactly how the qubit, when measured, can just be \(0\) or \(1\). Why does this state collapse happens? Nobody knows, but this is how
+things work, you know.</p>
+
+<p>Back to our math, we said that the values \(|\alpha|^2+|\beta|^2=1\), so a
+qubit can be seen as a unit vector in a two dimensional complex space,
+thus we may rewrite the qubit as:</p>
+
+\[\ket{\psi}=e^{i\gamma}\left(\cos\frac{\theta}{2}\ket{0}+e^{i\varphi}\sin\frac{\theta}{2}\ket{1}\right)\]
+
+<p>with \(\theta\), \(\varphi\), \(\gamma\) real numbers. Actually we can ignore the
+factor \(e^{i\gamma}\) (the reason why is outside the scope of this
+article), thus rewriting the qubit as:</p>
+
+\[\ket{\psi}=\cos\frac{\theta}{2}\ket{0}+e^{i\varphi}\sin\frac{\theta}{2}\ket{1}\]
+
+<p>We can see the qubit as a point in the 3-D unit sphere, also called
+Bloch sphere, this visualization is often used in quantum computing,
+even if it can not be generalized to multiple qubit systems.</p>
+
+<div id="fig-bloch">
+
+<div style="display: flex;justify-content: center;">
+
+<a href="https://en.wikipedia.org/wiki/Bloch_sphere" width="80%"><img src="images/Bloch_sphere.svg.png" /></a>
+
+</div>
+
+<div style="display: flex;justify-content: center;">
+<i>Figure 1: A Bloch sphere</i>
+</div>
+</div>
+
+<h2 id="quantum-gates">Quantum Gates</h2>
+
+<p>We have our qubit, the basic quantum computational element, now we
+should introduce how to use it. Simple! We can use quantum gates: just
+as classical computers have logical gates to manipulate information,
+quantum computers have quantum gates. Let’s keep it simple for now and
+consider just single bit gates. In classical computation theory the only
+interesting single bit gate is the NOT, providing the mapping \(0\to1\),
+\(1\to0\). There are also three other single bit gates: Identity, Set to
+\(0\) and Set to \(1\), but they are not that interesting.</p>
+
+<p>Can we imagine an analogous quantum NOT gate? This would be a gate that
+inverts the state \(\ket{0}\) to \(\ket{1}\) and vice versa. The problem
+here is that specifying an action on the states \(\ket{0}\) and \(\ket{1}\)
+does not tell anything about what happens to the superposition of these
+two states. The quantum NOT on the other hand acts linearly, this means
+that it takes a qubit in the state:</p>
+
+\[\ket{\psi} = \alpha\ket{0} + \beta\ket{1}\]
+
+<p>and outputs the qubit:</p>
+
+\[\ket{\psi} = \beta\ket{0} + \alpha\ket{1}\]
+
+<p>Actually all quantum gates, not just the NOT, act in a linear fashion.
+This is a general property of quantum operators. Since a quantum gate
+acts linearly, we can represent it in a matrix form. For example, here
+is the quantum NOT we described earlier:</p>
+
+\[X = \begin{bmatrix}
+0 &amp; 1\\
+1 &amp; 0
+\end{bmatrix}\]
+
+<p>This is how the gate operates in matricial form:</p>
+
+\[X\begin{bmatrix}\alpha \\ \beta\end{bmatrix}
+    =
+    \begin{bmatrix}
+0 &amp; 1\\
+1 &amp; 0
+\end{bmatrix}
+\begin{bmatrix}\alpha \\ \beta\end{bmatrix}
+=
+\begin{bmatrix}\beta \\ \alpha\end{bmatrix}\]
+
+<p>That’s quite interesting: we can describe quantum gates by matrices, but
+what are the property that these matrices should have? Well, for every
+qubit with parameters \(\alpha\) and \(\beta\) we have the constraint
+\(|\alpha|^2+|\beta|^2=1\), this means that if we let our valid qubit go
+through a quantum gate then we want a valid qubit on the way out, with
+squared values that sum to 1. With a little bit of linear algebra it is
+possible to show that for a matrix \(U\) to be a valid quantum gate it
+should have the property: \(U^{\dagger}U=I\). \(U^{\dagger}\) is the <em>adjoint</em>
+matrix of \(U\) (also called <em>Hermitian transpose</em>), obtained by taking the transpose of \(U\) and complex
+conjugating it. This constraint is called Hermiticity, and any matrix
+that satisfies it is a valid quantum gate! This means that there many
+non-trivial single bit quantum gates.</p>
+
+<p>For example a very important gate is the Hadamard gate:</p>
+
+\[H = \frac{1}{\sqrt{2}}\begin{bmatrix}
+    1 &amp; 1 \\
+    1 &amp; -1
+    \end{bmatrix}\]
+
+<p>This gate sends states in superposition. Observe below how, by feeding
+it a base state \(\ket{0}\) or \(\ket{1}\), we are left with a superposition
+with a \(50\%\) chance of landing on \(0\) and a \(50\%\) chance of landing on
+\(1\).</p>
+
+\[H\begin{bmatrix}1 \\ 0\end{bmatrix}
+    =
+    \begin{bmatrix}\frac{1}{\sqrt{2}} \\[5pt] \frac{1}{\sqrt{2}}\end{bmatrix}\]
+
+\[H\begin{bmatrix}0 \\ 1\end{bmatrix}
+    =
+    \begin{bmatrix}\frac{1}{\sqrt{2}} \\[5pt] -\frac{1}{\sqrt{2}}\end{bmatrix}\]
+
+\[\Big| \frac{1}{\sqrt{2}} \Big|^2 = 
+    \Big|-\frac{1}{\sqrt{2}}\Big|^2 = 0.5\]
+
+<p>A natural question to ask is: why the \(-1\) in the bottom right corner of
+the matrix? This is because an important property of quantum gates
+(derived from the Hermiticity constraint) is that all gates should be
+reversible, i.e. if we let the output qubit go through the same gate we will
+end up with the original one. This is actually an important property of
+quantum phisics that emerges in multiple situations.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>In this introductory article we gave you a taste of quantum computing
+and we introduced some fundamental concepts and notation. Probably
+you’ll be quite confused at this point. Don’t worry, it’s normal.
+Quantum computing is hard to grasp at first, but if you decide to delve
+deeper into it, things will make more and more sense. There are many
+reasons for doing so: one can be personal interest, another can be the
+fact that investing time in learning these concepts can be very
+strategic. Many large companies have invested millions into this field,
+and breakthroughs happen by the day. Whatever your reason, if you want
+to go deeper we published on our blog a part 2 of this article. Here
+we kept the math simple and intuitive, while in part 2 we focus more
+on the math formalism and introduce some other important concepts. Don’t
+be scared: if you have a general knowledge of computer science and
+linear algebra you’ll be able to follow it!</p>
+
+<h2 id="sources">Sources</h2>
+
+<p>Nielsen, M., &amp; Chuang, I. (2010). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge: Cambridge University Press. doi:10.1017/CBO9780511976667</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2022-11-01T00:00:00+00:00">November 1, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Quantum+Computing+for+Computer+Engineers+-+Part+1%20https%3A%2F%2Fthe-quantumist.github.io%2F2022%2F11%2F01%2Fquantum-computing-for-computer-engineers-part-1.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthe-quantumist.github.io%2F2022%2F11%2F01%2Fquantum-computing-for-computer-engineers-part-1.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fthe-quantumist.github.io%2F2022%2F11%2F01%2Fquantum-computing-for-computer-engineers-part-1.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/2023/01/31/quantum-computing-for-computer-engineers-part-2.html" class="pagination--pager" title="Quantum Computing for Computer Engineers - Part 2
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+    <!-- giscus Support -->
+    <script src="https://giscus.app/client.js"
+    data-repo="the-quantumist/the-quantumist.github.io"
+    data-repo-id="R_kgDOIUt2DA"
+    data-category="Comments"
+    data-category-id="DIC_kwDOIUt2DM4CSiDm"
+    data-mapping="url"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light_high_contrast"
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+    </script>
+  </article>
+
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You May Also Enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2023/09/18/model-collapse.html" rel="permalink">The snake biting its own tail: a brief overview of LLM collapse
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">Sep 18, 2023</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#machine-learning">MACHINE LEARNING</a>,
+        
+        <a class="tag"
+          href="/tags#large-language-models">LARGE LANGUAGE MODELS</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Scientists in the 1940s encountered a particular problem: newly-produced equipment for detecting radiation was recording a faint but constant signal, making ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2023/07/19/the-quantum-game.html" rel="permalink">The Quantum Game
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">Jul 19, 2023</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">A handbook for understanding quantum math in articles
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2023/05/14/quantum-computing-for-computer-engineers-part-3.html" rel="permalink">Quantum Computing for Computer Engineers - Part 3
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">May 14, 2023</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          13 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">So far, yet so close
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2023/01/31/quantum-computing-for-computer-engineers-part-2.html" rel="permalink">Quantum Computing for Computer Engineers - Part 2
+</a>
+      
+    </h2>
+    
+      <span class="post-item-date">Jan 31, 2023</span>
+    
+    
+    <div class="tags">
+      
+      <span itemprop="keywords">
+        
+        <a class="tag"
+          href="/tags#quantum-computing">QUANTUM COMPUTING</a>,
+        
+        <a class="tag"
+          href="/tags#linear-algebra">LINEAR ALGEBRA</a>
+        
+      </span>
+    </div>
+    
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Where are the other 432?
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 The Quantumist. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
